@@ -1,5 +1,10 @@
 source 'https://rubygems.org'
 
+gem 'puma'
+
+gem 'semantic-ui-sass', github: 'doabit/semantic-ui-sass'
+
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.2'
 
