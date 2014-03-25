@@ -11,7 +11,7 @@
 development:
   adapter: mysql2
   encoding: utf8
-  database: jintianwo_development
+  database: a_development
   pool: 5
   username: root
   password: 'billgates'
@@ -23,7 +23,7 @@ development:
 test:
   adapter: mysql2
   encoding: utf8
-  database: jintianwo_test
+  database: a_test
   pool: 5
   username: root
   password: 'billgates'
@@ -32,7 +32,7 @@ test:
 production:
   adapter: mysql2
   encoding: utf8
-  database: jintianwo_production
+  database: a_production
   pool: 5
   username: root
   password: 'billgates'

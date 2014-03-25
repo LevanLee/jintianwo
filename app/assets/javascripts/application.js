@@ -12,6 +12,20 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
 //= require semantic-ui
 //= require_tree .
+
+// $(document).ready(function(){
+// 	$('.ui.dropdown').dropdown({
+// 		on:'hover',
+// 		action:'hide'
+// 	});
+// });
+$(document).ready(function(){
+	$('.article').on("mouseenter",function(event){
+		$(this).find('.more').css('display', 'block');
+	});
+	$('.article').on("mouseleave",function(event){
+		$(this).find('.more').css('display', 'none');
+	});
+});

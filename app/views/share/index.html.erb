@@ -1,27 +1,120 @@
-<div class="ui large menu">
-  <a class="active item">
-      <i class="home icon"></i> 主页
-  </a>
-  <a class="item">
-      <i class="mail icon"></i> 消息
-  </a>1
-  <div class="right menu">
-      <div class="item">
-          <div class="ui icon input">
-              <input type="text" placeholder="搜索中...">
-              <i class="search link icon"></i>
+<div id="background">
+  <div class="topbar">
+    <div class="ui large menu">
+      <a class="item">
+        今天,我
+      </a>
+      <div class="ui label">
+        <a href=""><i class="mail icon"></i> 23</a>
+      </div>
+      <div class="right menu">
+        <div class="item">
+          <div class="ui icon mini input width190">
+            <input type="text" placeholder="搜索中...">
+            <i class="search link icon"></i>
           </div>
-      </div>
-      <div class="ui dropdown item">
-          语言 <i class="dropdown icon"></i>
-          <div class="menu">
-              <a class="item">英文</a>
-              <a class="item">中文</a>
-              <a class="item">日文</a>
-          </div>
-      </div>
-      <div class="item">
-          <div class="ui teal button">注册</div>
-      </div>
-  </div>
         </div>
+        <div class="ui simple dropdown item">
+          类目 <i class="dropdown icon"></i>
+          <div class="menu">
+            <a class="item">爱情</a>
+            <a class="item">动物</a>
+            <a class="item">金钱</a>
+            <a class="item">孩子</a>
+            <a class="item">工作</a>
+            <a class="item">健康</a>
+            <a class="item">XXOO</a>
+            <a class="item">杂项</a>
+          </div>
+        </div>
+        <div class="item">
+          <div class="ui orange button">注册</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="mark"><h1>今天你发生了什么囧事<br> ？</h1></div>
+  <div id="content">
+    <div class="wrapper">
+      <div class="post article" id="idnumber">
+        <p>
+          <span class="tooltips new"></span>
+          <a href="/love/21093699" class="fmllink">今天是我们的第六次约会，那个汉子我很喜欢。他问我等我们约会完以后是不是愿意和他的朋友皮特见个面。我说当然啦～ 结果皮特是他的小丁丁。FML</a>
+        </p>
+        <div class="date">
+          <div class="left_part">
+            <a href="">#210934488</a>
+            <br>
+            <span class="dyn-comments">60 评论</span>
+          </div>
+          <div class="right_part">
+            <p>
+              <span class="dyn-vote-j" id="voteidnumber">
+                <a href="javascript:;">赞~</a>
+                (
+                <span class="dyn-vote-j-data">100</span>
+                ) -
+              </span>
+              <span class="dyn-vote-t" id="votebfidnumber">
+                <a href="javascript:;" class="bf">你活该~</a>
+                (
+                <span class="dyn-vote-t-data">1239</span>
+                )
+              </span>
+            </p>
+            <p>
+              <%= semantic_icon('add') %> 2014/03/22 at 3:01pm -
+              <a href="/love" class="liencat">love</a>
+              - by Anonymous
+              <a href="/gender/woman" class="light"><%= semantic_icon('male') %></a>-
+              <a href="/contry/Canada" class="liencat">Canada</a>
+              (
+              <a href="/region/Ontario" class="light">Ontario</a>
+              )
+            </p>
+          </div>
+        </div>
+        <div class="more" id="more-idnumber" style="display:none;">
+          <%= semantic_icon('empty star') %>
+        </div>
+      </div>
+    </div>
+    <div class="dashboard">
+      <div class="part">
+        <div class="box" id="categories">
+          <h4>类目</h4>
+          <div class="ctlabel">
+            <div class="ui mini labels">
+              <div class="ui small label sidebar-tag">
+                爱情
+              </div>
+              <div class="ui small label sidebar-tag">
+                动物
+              </div>
+              <div class="ui small label sidebar-tag">
+                金钱
+              </div>
+              <div class="ui small label sidebar-tag">
+                孩子
+              </div>
+              <div class="ui small label sidebar-tag">
+                工作
+              </div>
+              <div class="ui small label sidebar-tag">
+                健康
+              </div>
+              <div class="ui small label sidebar-tag">
+                XXOO
+              </div>
+              <div class="ui small label sidebar-tag">
+                杂项
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

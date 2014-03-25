@@ -1,6 +1,288 @@
 /*
- *= require_self
- *= require_tree .
 */
 @import "semantic-ui";
-body {	margin: 0; padding: 0;}
+
+html {
+	background-color: transparent;
+	background-image: url(http://www.tuicool.com/images/gray_bg.png);
+}
+
+body {	margin: 0; padding: 0;
+	display: block;
+	font-family: 'Helvetica Neue', Helvetica, Tahoma, Arial, STXihei, 'Microsoft YaHei', 微软雅黑, sans-serif;
+	font-size: 14px;
+	height: 44px;
+	line-height: 22.399999618530273px;
+}
+
+.mark {
+	margin: 8px 50%;
+	text-align:center;
+	line-height: 34px;
+}
+
+.width190 {
+	width: 190px !important;
+}
+
+
+
+.topbar {
+	width: 1024px;
+	margin: auto;
+}
+
+#content {
+	width: 1024px;
+	margin: 0 auto;
+}
+
+.wrapper {
+	float: left;
+	width: 728px;
+	min-height: 10px;
+	padding-top: 16px;
+}
+
+.dashboard {
+	float: left;
+	padding-top: 15px;
+	margin-left: 10px;
+	width: 260px;
+}
+
+.dashboard .box {
+	width: 300px;
+	padding-top: 1px;
+	background-color: #ffffff;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	-o-border-radius: 4px;
+	-khtml-border-radius: 4px;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	-o-border-radius: 4px;
+	-khtml-border-radius: 4px;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	-o-border-radius: 4px;
+	-khtml-border-radius: 4px;
+	border-radius: 4px;
+	-moz-box-shadow: 0 1px 1px #dedede;
+	-webkit-box-shadow: 0 1px 1px #dedede;
+	-o-box-shadow: 0 1px 1px #dedede;
+	box-shadow: 0 1px 1px #dedede;
+	-moz-box-shadow: 0 1px 1px #dedede;
+	-webkit-box-shadow: 0 1px 1px #dedede;
+	-o-box-shadow: 0 1px 1px #dedede;
+	box-shadow: 0 1px 1px #dedede;
+	-moz-box-shadow: 0 1px 1px #dedede;
+	-webkit-box-shadow: 0 1px 1px #dedede;
+	-o-box-shadow: 0 1px 1px #dedede;
+	box-shadow: 0 1px 1px #dedede;
+	margin-bottom: 15px;
+}
+
+.dashboard .box h4 {
+	font-size: 10px;
+	font-weight: bold;
+	text-transform: uppercase;
+	background: #fefefe;
+	padding: 2px 6px;
+	margin: 0 1px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	-o-border-radius: 4px;
+	-khtml-border-radius: 4px;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	-o-border-radius: 4px;
+	-khtml-border-radius: 4px;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	-o-border-radius: 4px;
+	-khtml-border-radius: 4px;
+	border-radius: 4px;
+	-moz-border-radius-bottomleft: 0;
+	-moz-border-radius-bottomright: 0;
+	-webkit-border-bottom-left-radius: 0;
+	-webkit-border-bottom-right-radius: 0;
+	-o-border-bottom-left-radius: 0;
+	-o-border-bottom-right-radius: 0;
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
+	-moz-border-radius-bottomleft: 0;
+	-moz-border-radius-bottomright: 0;
+	-webkit-border-bottom-left-radius: 0;
+	-webkit-border-bottom-right-radius: 0;
+	-o-border-bottom-left-radius: 0;
+	-o-border-bottom-right-radius: 0;
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
+	-moz-border-radius-bottomleft: 0;
+	-moz-border-radius-bottomright: 0;
+	-webkit-border-bottom-left-radius: 0;
+	-webkit-border-bottom-right-radius: 0;
+	-o-border-bottom-left-radius: 0;
+	-o-border-bottom-right-radius: 0;
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
+}
+
+.post {
+	padding: 8px;
+	background-color: #ffffff;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	-o-border-radius: 4px;
+	-khtml-border-radius: 4px;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	-o-border-radius: 4px;
+	-khtml-border-radius: 4px;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	-o-border-radius: 4px;
+	-khtml-border-radius: 4px;
+	border-radius: 4px;
+	-moz-box-shadow: 0 1px 1px #dedede;
+	-webkit-box-shadow: 0 1px 1px #dedede;
+	-o-box-shadow: 0 1px 1px #dedede;
+	box-shadow: 0 1px 1px #dedede;
+	-moz-box-shadow: 0 1px 1px #dedede;
+	-webkit-box-shadow: 0 1px 1px #dedede;
+	-o-box-shadow: 0 1px 1px #dedede;
+	box-shadow: 0 1px 1px #dedede;
+	-moz-box-shadow: 0 1px 1px #dedede;
+	-webkit-box-shadow: 0 1px 1px #dedede;
+	-o-box-shadow: 0 1px 1px #dedede;
+	box-shadow: 0 1px 1px #dedede;
+	margin-bottom: 15px;
+	position: relative;
+	overflow: hidden;
+}
+
+.post p {
+	overflow: hidden;
+}
+
+.post p .new {
+	background-image: url(http://betacie.cachefly.net/fmylife/images/tooltips.png);
+	background-size: 256px 90px;
+	display: inline-block;
+	background-position: -68px -20px;
+	width: 16px;
+	height: 9px;
+}
+
+.post a.fmllink, .post a.fmllink:link, .post a.fmllink:hover, .post a:link.fmllink, .post a:link.fmllink:link, .post a:link.fmllink:hover {
+	color: #555;
+	text-decoration: none;
+}
+
+.ui {
+	a {
+		text-decoration: none;
+	}
+}
+
+.post .date {
+	display: block;
+	font-size: 75%;
+	color: #808080;
+	margin-top: 6px;
+	line-height: 140%;
+	float: left;
+}
+
+.post .more {
+	position: absolute;
+	right: 8px;
+	bottom: 8px;
+}
+
+.post .date .left_part {
+	float: left;
+	text-align: right;
+}
+
+.post .date .left_part * {
+	text-align: left;
+}
+
+.post .date a {
+	text-decoration: none;
+}
+
+.post a, .post a:link {
+	color: #0062BD;
+	text-decoration: none;
+}
+
+.post .date .right_part {
+	float: left;
+	margin-left: 4px;
+	border-left: 2px solid #e5e5e5;
+	padding-left: 5px;
+}
+
+* {
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+}
+
+.post .date a {
+	text-decoration: none;
+}
+
+.post a, .post a:link {
+	color: #0062BD;
+	text-decoration: none;
+}
+
+
+.post a.bf, .post a.bf:link, .post a:link.bf, .post a:link.bf:link {
+	color: #4c93d6;
+	text-decoration: none;
+}
+
+.post .date a.liencat {
+	color: #808080;
+}
+
+.post .date .light {
+	color: #aeaeae;
+}
+
+.post .more {
+	position: absolute;
+	right: 8px;
+	bottom: 8px;
+}
+
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote, th, td {
+	margin: 0;
+	padding: 0;
+}
+
+.sidebar-tag{
+	margin-top: 8px !important;
+	float: left;
+	margin-left: 8px !important;
+}
+// .ctlabel {
+// 	width: 100%;
+// 	margin: 10px auto;
+// 	.label {
+// 		margin-left: 15px;
+// 	}
+// }
+
+// 匹配出主域名 ([a-z0-9][a-z0-9\-]*?\.(?:com|cn|net|org|gov|info|la|cc|co)(?:\.(?:cn|jp))?)$
