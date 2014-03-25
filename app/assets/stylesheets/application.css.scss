@@ -7,12 +7,19 @@ html {
 	background-image: url("gray_bg.png");
 }
 
+
+
 body {	margin: 0; padding: 0;
 	display: block;
 	font-family: 'Helvetica Neue', Helvetica, Tahoma, Arial, STXihei, 'Microsoft YaHei', 微软雅黑, sans-serif;
 	font-size: 14px;
 	height: 44px;
 	line-height: 22.399999618530273px;
+}
+
+.ui.dropdown > .dropdown.icon {
+width: auto;
+margin: 0em 0em 0em 0em !important;
 }
 
 .mark {
@@ -173,7 +180,7 @@ body {	margin: 0; padding: 0;
 }
 
 .post p .new {
-	background-image: url(http://betacie.cachefly.net/fmylife/images/tooltips.png);
+	background-image: url("tooltips.png");
 	background-size: 256px 90px;
 	display: inline-block;
 	background-position: -68px -20px;
@@ -195,7 +202,7 @@ body {	margin: 0; padding: 0;
 .post .date {
 	display: block;
 	font-size: 75%;
-	color: #808080;
+	color: #909090;
 	margin-top: 6px;
 	line-height: 140%;
 	float: left;
@@ -214,10 +221,6 @@ body {	margin: 0; padding: 0;
 
 .post .date .left_part * {
 	text-align: left;
-}
-
-.post .date a {
-	text-decoration: none;
 }
 
 .post a, .post a:link {
