@@ -8,6 +8,11 @@
     </div>
     <div class="right menu">
       <div class="item">
+        <%= link_to new_share_path do %>
+          <i class="edit icon"></i>
+        <% end %>
+      </div>
+      <div class="item">
         <div class="ui icon mini input width190">
           <input type="text" placeholder="搜索中...">
           <i class="search link icon"></i>
@@ -27,10 +32,7 @@
         </div>
       </div>
       <div class="item">
-        <div class="ui orange button">注册</div>
-      </div>
-      <div class="item">
-        <div class="ui orange button"><%= link_to "分享", new_share_path %></div>
+        <%= link_to "注册", new_user_registration_path, class:" ui orange button " %>
       </div>
     </div>
   </div>
