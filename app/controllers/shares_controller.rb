@@ -60,7 +60,7 @@ class SharesController < ApplicationController
   end
 
   def tag
-    @shares = Share.where(category_id: params[:category])
+    @shares = Share.where(category_id: params[:category]).order('created_at desc')
   end
 
   private
