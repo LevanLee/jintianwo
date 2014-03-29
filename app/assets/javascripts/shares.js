@@ -5,6 +5,14 @@ window.Share = {
         $.post("/shares", {share: { content: content, category_id: share_category_id }}, function(data){
             var newArticle = $(template.render("article-template", data));
             $("#content .wrapper").prepend( newArticle );
+            // 时间绑定
+            newArticle.on("mouseenter",function(event){
+              $(this).find('.more').css('display', 'block');
+            });
+            newArticle.on("mouseleave",function(event){
+              $(this).find('.more').css('display', 'none');
+            });
+
             newArticle.css('display', 'none');
             newArticle.fadeIn(2000);
         });
@@ -25,6 +33,14 @@ $(document).ready(function(){
             $(data).each(function(index, element){
                 var newArticle = $(template.render("article-template", element));
                 $("#content .wrapper").append(newArticle);
+                // 时间绑定
+                newArticle.on("mouseenter",function(event){
+                  $(this).find('.more').css('display', 'block');
+                });
+                newArticle.on("mouseleave",function(event){
+                  $(this).find('.more').css('display', 'none');
+                });
+
                 newArticle.css('display', 'none');
                 newArticle.fadeIn(800);
             });
