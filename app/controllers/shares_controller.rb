@@ -59,6 +59,10 @@ class SharesController < ApplicationController
     end
   end
 
+  def tag
+    @shares = Share.where(category_id: params[:category])
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_share

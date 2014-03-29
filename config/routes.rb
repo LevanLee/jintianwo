@@ -1,7 +1,9 @@
 Jintianwo::Application.routes.draw do
   devise_for :users
   resources :categories
-  resources :shares
+  resources :shares do
+    get 'tag', on: :collection
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
