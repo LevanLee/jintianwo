@@ -1,5 +1,6 @@
 <div id="background">
   <%= render 'layouts/topbar' %>
+  <div id="operation"></div>
   <div class="mark"><h1>今天你发生了什么囧事<br> ？</h1></div>
   <div id="content">
     <div class="wrapper">
@@ -292,6 +293,8 @@
         </div>
       </div>
     </div>
+
+  <%= render partial: 'share_index_template' %>
   </div>
 </div>
 

@@ -28,10 +28,8 @@ class SharesController < ApplicationController
 
     respond_to do |format|
       if @share.save
-        format.html { redirect_to @share, notice: 'Share was successfully created.' }
         format.json { render action: 'show', status: :created, location: @share }
       else
-        format.html { render action: 'new' }
         format.json { render json: @share.errors, status: :unprocessable_entity }
       end
     end

@@ -1,0 +1,60 @@
+<script id="new-share-template" type="text/html">
+    <form accept-charset="UTF-8" action="/shares" class="new_share" id="new_share" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"><input name="authenticity_token" type="hidden" value="48n4f2OOjpcJUELEJF+xpZzmVflsp83ONCLmdalDmSY="></div>
+        <div class="field">
+          <label for="share_content">Content</label><br>
+          <input id="share_content" name="share[content]" type="text">
+        </div>
+        <div class="field">
+          <label for="share_category_id">Category</label><br>
+          <input id="share_category_id" name="share[category_id]" type="text">
+        </div>
+        <div class="actions">
+          <input name="commit" type="submit" value="Create Share">
+        </div>
+        <a href="javascript:void(0);" onClick="return Share.submitFrom('new_share')">dianji</a>
+    </form>
+</script>
+<script id="article-template" type="text/html">
+    <div class="post article" id="idnumber" style="display:none;">
+      <p>
+        <span class="tooltips new"></span>
+        <a href="/love/21093699" class="fmllink">今天是我们的第六次约会，那个汉子我很喜欢。他问我等我们约会完以后是不是愿意和他的朋友皮特见个面。我说当然啦～ 结果皮特是他的小丁丁。FML</a>
+      </p>
+      <div class="date">
+        <div class="left_part">
+          <a href="">#210934488</a>
+          <br>
+          <span class="dyn-comments">60 评论</span>
+        </div>
+        <div class="right_part">
+          <p>
+            <span class="dyn-vote-j" id="voteidnumber">
+              <a href="javascript:;">赞~</a>
+              (
+              <span class="dyn-vote-j-data">100</span>
+              ) -
+            </span>
+            <span class="dyn-vote-t" id="votebfidnumber">
+              <a href="javascript:;" class="bf">你活该~</a>
+              (
+              <span class="dyn-vote-t-data">1239</span>
+              )
+            </span>
+          </p>
+          <p>
+            <%= semantic_icon('add') %> 2014/03/22 at 3:01pm -
+            <a href="/love" class="liencat">love</a>
+            - by Anonymous
+            <a href="/gender/woman" class="light"><%= semantic_icon('male') %></a>-
+            <a href="/contry/Canada" class="liencat">Canada</a>
+            (
+            <a href="/region/Ontario" class="light">Ontario</a>
+            )
+          </p>
+        </div>
+      </div>
+      <div class="more" id="more-idnumber" style="display:none;">
+        <%= semantic_icon('empty star') %>
+      </div>
+    </div>
+</script>

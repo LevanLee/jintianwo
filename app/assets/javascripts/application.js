@@ -29,3 +29,6 @@ $(document).ready(function(){
 		$(this).find('.more').css('display', 'none');
 	});
 });
+
+template.openTag = "<?";
+template.closeTag = "?>";
