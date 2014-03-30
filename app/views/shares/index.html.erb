@@ -263,30 +263,9 @@
           <h4>类目</h4>
           <div class="ctlabel">
             <div class="ui mini labels">
-              <div class="ui small label sidebar-tag" data-id="1">
-                爱情
-              </div>
-              <div class="ui small label sidebar-tag">
-                动物
-              </div>
-              <div class="ui small label sidebar-tag">
-                金钱
-              </div>
-              <div class="ui small label sidebar-tag">
-                孩子
-              </div>
-              <div class="ui small label sidebar-tag">
-                工作
-              </div>
-              <div class="ui small label sidebar-tag">
-                健康
-              </div>
-              <div class="ui small label sidebar-tag">
-                XXOO
-              </div>
-              <div class="ui small label sidebar-tag">
-                杂项
-              </div>
+              <% @categories.each do |category| %>
+                <%= content_tag :div, category.name, :class => "ui small label sidebar-tag", "data-id" => category.id %>
+              <% end %>
             </div>
           </div>
 
