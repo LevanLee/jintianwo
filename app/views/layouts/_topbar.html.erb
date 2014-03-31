@@ -35,8 +35,8 @@
         <% if user_signed_in? %>
           <%= link_to "退出", destroy_user_session_path, method: :delete %>
         <% else %>
-          <%= link_to "登录", new_user_session_path, class:" ui orange button " %>
-          <%= link_to "注册", new_user_registration_path, class:" ui orange button " %>
+          <%= link_to "登录", new_user_session_path, class:"ui orange button sign-in-link" %>
+          <%= link_to "注册", new_user_registration_path, class:"ui orange button sign-up-link" %>
         <% end %>
       </div>
     </div>

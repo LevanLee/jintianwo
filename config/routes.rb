@@ -1,5 +1,5 @@
 Jintianwo::Application.routes.draw do
-  devise_for :users
+  devise_for :users, :controllers => { sessions: 'sessions', registrations: 'registrations' }
   resources :categories
   resources :shares do
     get 'tag', on: :collection

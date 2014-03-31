@@ -28,6 +28,35 @@ $(document).ready(function(){
 	$('.article').on("mouseleave",function(event){
 		$(this).find('.more').css('display', 'none');
 	});
+
+  $(".item .sign-in-link").on('click', function(event){
+      event.preventDefault();
+      var newShareTemplate = $(template.render("sign-in-template"));
+      $("#background #operation").empty().append(newShareTemplate);
+      $("form#new_user").bind("ajax:success", function(e, data, status, xhr){
+          if(data.success){
+              $("#background #operation").empty();
+          }
+          else{
+              console.log(data);
+          }
+      });
+  });
+
+  $(".item .sign-up-link").on('click', function(event){
+      event.preventDefault();
+      var newShareTemplate = $(template.render("sign-up-template"));
+      $("#background #operation").empty().append(newShareTemplate);
+      $("form#new_user").bind("ajax:success", function(e, data, status, xhr){
+          if(data.success){
+              console.log(data);
+          }
+          else{
+              console.log(data);
+          }
+      });
+  });
+
 });
 
 template.openTag = "<?";

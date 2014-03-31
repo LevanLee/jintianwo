@@ -1,19 +1,20 @@
 <script id="new-share-template" type="text/html">
-    <form accept-charset="UTF-8" action="/shares" class="new_share" id="new_share" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"><input name="authenticity_token" type="hidden" value="48n4f2OOjpcJUELEJF+xpZzmVflsp83ONCLmdalDmSY="></div>
-        <div class="field">
-          <label for="share_content">Content</label><br>
-          <input id="share_content" name="share[content]" type="text">
-        </div>
-        <div class="field">
-          <label for="share_category_id">Category</label><br>
-          <input id="share_category_id" name="share[category_id]" type="text">
-        </div>
-        <div class="actions">
-          <input name="commit" type="submit" value="Create Share">
-        </div>
-        <a href="javascript:void(0);" onClick="return Share.submitFrom('new_share')">dianji</a>
-    </form>
+<form accept-charset="UTF-8" action="/shares" class="new_share" id="new_share" method="post">
+    <div class="field">
+      <label for="share_content">Content</label><br>
+      <input id="share_content" name="share[content]" type="text">
+    </div>
+    <div class="field">
+      <label for="share_category_id">Category</label><br>
+      <input id="share_category_id" name="share[category_id]" type="text">
+    </div>
+    <div class="actions">
+      <input name="commit" type="submit" value="Create Share">
+    </div>
+    <a href="javascript:void(0);" onClick="return Share.submitFrom('new_share')">dianji</a>
+</form>
 </script>
+
 <script id="article-template" type="text/html">
   <div class="post article" id="<?=id ?>">
       <p>
@@ -57,4 +58,36 @@
         <%= semantic_icon('empty star') %>
       </div>
     </div>
+</script>
+
+<script id="sign-in-template" type="text/html">
+    <form accept-charset="UTF-8" action="/users/sign_in" class="new_user" data-remote="true" id="new_user" method="post">
+        <div><label for="user_username">Username</label><br>
+        <input id="user_username" name="user[username]" type="text"></div>
+
+        <div><label for="user_password">Password</label><br>
+        <input autocomplete="off" id="user_password" name="user[password]" type="password"></div>
+
+        <div><input name="user[remember_me]" type="hidden" value="0"><input id="user_remember_me" name="user[remember_me]" type="checkbox" value="1"> <label for="user_remember_me">Remember me</label></div>
+
+        <div><input name="commit" type="submit" value="Sign in"></div>
+    </form>
+</script>
+
+<script id="sign-up-template" type="text/html">
+    <form accept-charset="UTF-8" action="/users" class="new_user" data-remote="true" id="new_user" method="post">
+        <div><label for="user_username">Username</label><br>
+        <input id="user_username" name="user[username]" type="text"></div>
+
+        <div><label for="user_email">Email</label><br>
+        <input autofocus="autofocus" id="user_email" name="user[email]" type="email" value=""></div>
+
+        <div><label for="user_password">Password</label><br>
+        <input autocomplete="off" id="user_password" name="user[password]" type="password"></div>
+
+        <div><label for="user_password_confirmation">Password confirmation</label><br>
+        <input autocomplete="off" id="user_password_confirmation" name="user[password_confirmation]" type="password"></div>
+
+        <div><input name="commit" type="submit" value="Sign up"></div>
+    </form>
 </script>
