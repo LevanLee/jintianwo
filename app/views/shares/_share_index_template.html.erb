@@ -8,9 +8,6 @@
       <label for="share_category_id">Category</label><br>
       <input id="share_category_id" name="share[category_id]" type="text">
     </div>
-    <div class="actions">
-      <input name="commit" type="submit" value="Create Share">
-    </div>
     <a href="javascript:void(0);" onClick="return Share.submitFrom('new_share')">dianji</a>
 </form>
 </script>
@@ -75,19 +72,31 @@
 </script>
 
 <script id="sign-up-template" type="text/html">
-    <form accept-charset="UTF-8" action="/users" class="new_user" data-remote="true" id="new_user" method="post">
-        <div><label for="user_username">Username</label><br>
-        <input id="user_username" name="user[username]" type="text"></div>
+    <h2>Sign up</h2>
 
-        <div><label for="user_email">Email</label><br>
-        <input autofocus="autofocus" id="user_email" name="user[email]" type="email" value=""></div>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), remote: true) do |f| %>
 
-        <div><label for="user_password">Password</label><br>
-        <input autocomplete="off" id="user_password" name="user[password]" type="password"></div>
+      <div><%= f.label :username %><br />
+      <%= f.text_field :username %></div>
 
-        <div><label for="user_password_confirmation">Password confirmation</label><br>
-        <input autocomplete="off" id="user_password_confirmation" name="user[password_confirmation]" type="password"></div>
+      <div><%= f.label :email %><br />
+      <%= f.email_field :email, autofocus: true %></div>
 
-        <div><input name="commit" type="submit" value="Sign up"></div>
-    </form>
+      <div><%= f.label :password %><br />
+        <%= f.password_field :password, autocomplete: "off" %></div>
+
+      <div><%= f.label :password_confirmation %><br />
+        <%= f.password_field :password_confirmation, autocomplete: "off" %></div>
+
+      <div><%= f.submit "Sign up" %></div>
+    <% end %>
+</script>
+
+<script id="sign-success-template" type="text/html">
+    <%= link_to "退出", destroy_user_session_path, class: "sign-out-link", method: :delete, remote: true %>
+</script>
+
+<script id="sign-out-success-template" type="text/html">
+    <%= link_to "登录", new_user_session_path, class:"ui orange button sign-in-link" %>
+    <%= link_to "注册", new_user_registration_path, class:"ui orange button sign-up-link" %>
 </script>

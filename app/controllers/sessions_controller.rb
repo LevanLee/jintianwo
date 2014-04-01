@@ -1,4 +1,5 @@
 class SessionsController < Devise::SessionsController
+  skip_before_action :verify_authenticity_token
   def create
     resource = warden.authenticate!(:scope => resource_name, :recall => "#{controller_path}#failure")
     sign_in_and_redirect(resource_name, resource)

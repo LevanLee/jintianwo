@@ -1,7 +1,7 @@
 window.Share = {
     submitFrom : function(ele){
         var content = $('#'+ele).find("#share_content").val();
-        var share_category_id = $(ele).find("#share_category_id").val();
+        var share_category_id = $('#'+ele).find("#share_category_id").val();
         $.post("/shares", {share: { content: content, category_id: share_category_id }}, function(data){
             var newArticle = $(template.render("article-template", data));
             $("#content .wrapper").prepend( newArticle );
@@ -15,6 +15,7 @@ window.Share = {
 
             newArticle.css('display', 'none');
             newArticle.fadeIn(2000);
+            $("#background #operation").empty();
         });
     }
 };

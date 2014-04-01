@@ -21,42 +21,60 @@
 // 		action:'hide'
 // 	});
 // });
+window.Sign = {
+    signInLink: function(event){
+        event.preventDefault();
+        var newShareTemplate = $(template.render("sign-in-template"));
+        $("#background #operation").empty().append(newShareTemplate);
+        $("form#new_user").bind("ajax:success", function(e, data, status, xhr){
+            if(data.success){
+                $("#background #operation").empty();
+                $(".sign-status").empty().append(template.render("sign-success-template"));
+                $('.sign-status .sign-out-link').on('click', Sign.signOutLink);
+            }
+            else{
+                console.log(data);
+            }
+        });
+    },
+    signUpLink: function(event){
+        event.preventDefault();
+        var newShareTemplate = $(template.render("sign-up-template"));
+        $("#background #operation").empty().append(newShareTemplate);
+        $("form#new_user").bind("ajax:success", function(e, data, status, xhr){
+            if(data.success){
+                $("#background #operation").empty();
+                $(".sign-status").empty().append(template.render("sign-success-template"));
+                $('.sign-status .sign-out-link').on('click', Sign.signOutLink);
+            }
+            else{
+                console.log(data);
+            }
+        });
+    },
+    signOutLink: function(event){
+        event.preventDefault();
+        $.ajax({url: '/users/sign_out', type: 'DELETE', success: function(data, result, xhr){
+            console.log(xhr.status);
+            if(xhr.status == 204){
+                $(".sign-status").empty().append(template.render("sign-out-success-template"));
+                $('.sign-status .sign-in-link').on('click', Sign.signInLink);
+                $('.sign-status .sign-up-link').on('click', Sign.signUpLink);
+            }
+        }});
+    }
+};
+
 $(document).ready(function(){
-	$('.article').on("mouseenter",function(event){
-		$(this).find('.more').css('display', 'block');
-	});
-	$('.article').on("mouseleave",function(event){
-		$(this).find('.more').css('display', 'none');
-	});
-
-  $(".item .sign-in-link").on('click', function(event){
-      event.preventDefault();
-      var newShareTemplate = $(template.render("sign-in-template"));
-      $("#background #operation").empty().append(newShareTemplate);
-      $("form#new_user").bind("ajax:success", function(e, data, status, xhr){
-          if(data.success){
-              $("#background #operation").empty();
-          }
-          else{
-              console.log(data);
-          }
-      });
-  });
-
-  $(".item .sign-up-link").on('click', function(event){
-      event.preventDefault();
-      var newShareTemplate = $(template.render("sign-up-template"));
-      $("#background #operation").empty().append(newShareTemplate);
-      $("form#new_user").bind("ajax:success", function(e, data, status, xhr){
-          if(data.success){
-              console.log(data);
-          }
-          else{
-              console.log(data);
-          }
-      });
-  });
-
+    $('.article').on("mouseenter",function(event){
+      $(this).find('.more').css('display', 'block');
+    });
+    $('.article').on("mouseleave",function(event){
+      $(this).find('.more').css('display', 'none');
+    });
+    $('.sign-status .sign-in-link').on('click', Sign.signInLink);
+    $('.sign-status .sign-up-link').on('click', Sign.signUpLink);
+    $('.sign-status .sign-out-link').on('click', Sign.signOutLink);
 });
 
 template.openTag = "<?";
