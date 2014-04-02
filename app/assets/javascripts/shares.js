@@ -17,17 +17,37 @@ window.Share = {
             newArticle.fadeIn(2000);
             $("#background #operation").empty();
         });
-    }
-};
-$(document).ready(function(){
-    $(".item .new-share-link").on('click', function(event){
-        event.preventDefault();
-        var newShareTemplate = $(template.render("new-share-template"));
-        $("#background #operation").empty().append(newShareTemplate);
-    });
-
-    $(".dashboard .sidebar-tag").on('click', function(){
+    },
+    // newShareLink
+    newShareLink: function(event){
         var _this = $(this);
+        event.preventDefault();
+        if( _this.data('switch') ){
+            _this.data('switch', false);
+            var color = _this.data('switch') ? 'green' : 'rgba(0, 0, 0, 0.75)';
+            _this.css('color', color);
+            $("#background #operation").empty();
+            _this.off();
+            _this.on('click', Share.newShareLink);
+        } else {
+            _this.data('switch', true);
+            var color = _this.data('switch') ? 'green' : 'rgba(0, 0, 0, 0.75)';
+            _this.css('color', color);
+            event.preventDefault();
+            var newShareTemplate = $(template.render("new-share-template"));
+            $("#background #operation").empty().append(newShareTemplate);
+            _this.off();
+            _this.on('click', Share.newShareLink);
+        }
+    },
+    // sidebarTagLink
+    sidebarTagLink: function(event){
+        event.preventDefault();
+        var _this = $(this);
+        $('div[data-id='+ _this.data('id') +']').addClass('green');
+        $('div[data-id='+ _this.data('id') +']').siblings().each(function(index, element){
+            $(element).removeClass('green');
+        });
         var categoryId = _this.data('id');
         $.getJSON('/shares/tag', {category: categoryId}, function(data){
             $("#content .wrapper").empty();
@@ -46,5 +66,25 @@ $(document).ready(function(){
                 newArticle.fadeIn(800);
             });
         })
-    });
+    },
+    // sidebarTagButton
+    sidebarTagButton: function(){
+        var _this = $(this);
+        $(".dashboard .sidebar-tag").each(function(index, element){
+            $(element).removeClass('green');
+        });
+        _this.addClass('green');
+    },
+    // clearNewShareLink
+    clearNewShareLink: function(){
+        $('a.new-share-link').data('switch', false);
+        $('a.new-share-link').css('color', 'rgba(0, 0, 0, 0.75)');
+    }
+
+};
+$(document).ready(function(){
+    $(".dashboard .sidebar-tag").on('click', Share.sidebarTagLink);
+    $(".dashboard .sidebar-tag").on('click', Share.sidebarTagButton);
+    $(".menu .nav-tag").on('click', Share.sidebarTagLink);
+    $('.sign-in-link, .sign-up-link, .sign-out-link').on('click', Share.clearNewShareLink);
 });

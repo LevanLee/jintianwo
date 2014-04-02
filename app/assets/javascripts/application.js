@@ -55,7 +55,6 @@ window.Sign = {
     signOutLink: function(event){
         event.preventDefault();
         $.ajax({url: '/users/sign_out', type: 'DELETE', success: function(data, result, xhr){
-            console.log(xhr.status);
             if(xhr.status == 204){
                 $(".sign-status").empty().append(template.render("sign-out-success-template"));
                 $('.sign-status .sign-in-link').on('click', Sign.signInLink);
@@ -75,6 +74,7 @@ $(document).ready(function(){
     $('.sign-status .sign-in-link').on('click', Sign.signInLink);
     $('.sign-status .sign-up-link').on('click', Sign.signUpLink);
     $('.sign-status .sign-out-link').on('click', Sign.signOutLink);
+    $(".item .new-share-link").on('click', Share.newShareLink);
 });
 
 template.openTag = "<?";
