@@ -79,6 +79,10 @@ window.Share = {
     clearNewShareLink: function(){
         $('a.new-share-link').data('switch', false);
         $('a.new-share-link').css('color', 'rgba(0, 0, 0, 0.75)');
+    },
+    // comment
+    commentLink: function(){
+        console.log('comment');
     }
 
 };
@@ -87,4 +91,5 @@ $(document).ready(function(){
     $(".dashboard .sidebar-tag").on('click', Share.sidebarTagButton);
     $(".menu .nav-tag").on('click', Share.sidebarTagLink);
     $('.sign-in-link, .sign-up-link, .sign-out-link').on('click', Share.clearNewShareLink);
+    $('.article .comment-link').on('click', Share.commentLink);
 });
