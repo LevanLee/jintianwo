@@ -4,7 +4,7 @@ class SharesController < ApplicationController
   # GET /shares
   # GET /shares.json
   def index
-    @shares = Share.all
+    @shares = Share.limit(2).order('id desc')
     @categories = Category.all
   end
 

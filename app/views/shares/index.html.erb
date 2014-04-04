@@ -4,8 +4,8 @@
   <div class="mark"><h1>今天你发生了什么囧事<br> ？</h1></div>
   <div id="content">
     <div class="wrapper">
-        <% 6.times do %>
-            <div class="post article" id="idnumber">
+        <% @shares.each do |share| %>
+            <div class="post article" id="<%= share.id %>">
               <p>
                 <span class="tooltips new"></span>
                 <a href="/love/21093699" class="fmllink">今天是我们的第六次约会，那个汉子我很喜欢。他问我等我们约会完以后是不是愿意和他的朋友皮特见个面。我说当然啦～ 结果皮特是他的小丁丁。FML</a>

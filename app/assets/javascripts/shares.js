@@ -97,9 +97,38 @@ window.Share = {
                 //var newTemp = $(data);
                 //console.log(template.compile(data));
                 _this.parent().find('.comment-content').append(newTemp);
+                $('.article .comment-submit-link').on('click', Share.commentSubmitLink);
                 _this.parent().find('.comment-content').slideDown("slow");
             });
         }
+    },
+    // commentSubmitLink
+    commentSubmitLink: function(){
+        var _this = $(this);
+        var _parent = _this.closest('.article');
+        var shareId = _parent.attr('id');
+        var contentInput = _parent.find('.comment-input').html();
+        if (contentInput == '') {
+            _parent.find('.comment-input').animate({ 'border-color': "red" }, 500,'linear').animate({ 'border-color': "#ccc" }, 500,'linear');
+            return false;
+        }
+
+        $.post('/comments',{comment: { share_id: shareId, content: contentInput }}, function(data){
+            switch (data.status) {
+                case 0: {
+                    var newTemp = $(template.render('article-comment-template'));
+                    newTemp.css('display', 'none');
+                    _parent.find('.comment-main').prepend(newTemp);
+                    newTemp.fadeIn('slow');
+                    break;
+                }
+                case 1: {
+                    $(document).scrollTop(0);
+                    $('.sign-status .sign-in-link').click();
+                    break;
+                }
+            }
+        });
     }
 
 };
