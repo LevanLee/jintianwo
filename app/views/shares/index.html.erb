@@ -4,7 +4,7 @@
   <div class="mark"><h1>今天你发生了什么囧事<br> ？</h1></div>
   <div id="content">
     <div class="wrapper">
-        <% 1.times do %>
+        <% 6.times do %>
             <div class="post article" id="idnumber">
               <p>
                 <span class="tooltips new"></span>
@@ -41,10 +41,11 @@
                   </p>
                 </div>
               </div>
-              <div class="comment-link">评论</div>
-              <div class="more" id="more-idnumber" style="display:none;">
+              <div class="comment-link" data-switch="false">评论</div>
+              <div class="article-like" id="more-idnumber" style="display:none;">
                 <%= semantic_icon('empty star') %>
               </div>
+              <div class="comment-content" style="display:none;"></div>
             </div>
         <% end %>
     </div>

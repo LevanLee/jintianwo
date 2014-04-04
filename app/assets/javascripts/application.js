@@ -66,10 +66,10 @@ window.Sign = {
 
 $(document).ready(function(){
     $('.article').on("mouseenter",function(event){
-      $(this).find('.more').css('display', 'block');
+      $(this).find('.article-like').css('display', 'block');
     });
     $('.article').on("mouseleave",function(event){
-      $(this).find('.more').css('display', 'none');
+      $(this).find('.article-like').css('display', 'none');
     });
     $('.sign-status .sign-in-link').on('click', Sign.signInLink);
     $('.sign-status .sign-up-link').on('click', Sign.signUpLink);

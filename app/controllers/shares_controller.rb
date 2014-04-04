@@ -8,6 +8,10 @@ class SharesController < ApplicationController
     @categories = Category.all
   end
 
+  def comment
+    render layout: false
+  end
+
   # GET /shares/1
   # GET /shares/1.json
   def show

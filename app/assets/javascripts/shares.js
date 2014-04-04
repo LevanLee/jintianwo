@@ -56,15 +56,16 @@ window.Share = {
                 $("#content .wrapper").append(newArticle);
                 // 时间绑定
                 newArticle.on("mouseenter",function(event){
-                  $(this).find('.more').css('display', 'block');
+                  $(this).find('.article-like').css('display', 'block');
                 });
                 newArticle.on("mouseleave",function(event){
-                  $(this).find('.more').css('display', 'none');
+                  $(this).find('.article-like').css('display', 'none');
                 });
 
                 newArticle.css('display', 'none');
                 newArticle.fadeIn(800);
             });
+            $('.article .comment-link').on('click', Share.commentLink);
         })
     },
     // sidebarTagButton
@@ -80,9 +81,25 @@ window.Share = {
         $('a.new-share-link').data('switch', false);
         $('a.new-share-link').css('color', 'rgba(0, 0, 0, 0.75)');
     },
-    // comment
-    commentLink: function(){
-        console.log('comment');
+    // commentLink
+    commentLink: function(event){
+        var _this = $(this);
+        var currentScrollTop = $(document).scrollTop();
+        event.preventDefault();
+        if( _this.data('switch') ){
+            _this.data('switch', false);
+            _this.parent().find('.comment-content').slideUp();
+            _this.parent().find('.comment-content').empty();
+        } else {
+            _this.data('switch', true);
+            $.get('/shares/comment',function(data){
+                var newTemp = template.compile(data);
+                //var newTemp = $(data);
+                //console.log(template.compile(data));
+                _this.parent().find('.comment-content').append(newTemp);
+                _this.parent().find('.comment-content').slideDown("slow");
+            });
+        }
     }
 
 };
