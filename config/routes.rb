@@ -1,4 +1,6 @@
 Jintianwo::Application.routes.draw do
+  resources :comments
+
   devise_for :users, :controllers => { sessions: 'sessions', registrations: 'registrations' }
   resources :categories
   resources :shares do
