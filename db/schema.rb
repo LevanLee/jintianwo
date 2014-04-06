@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 20140404050215) do
   end
 
   create_table "shares", force: true do |t|
+    t.integer  "user_id"
     t.string   "content"
     t.integer  "category_id"
     t.datetime "created_at"
