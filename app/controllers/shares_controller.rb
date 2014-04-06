@@ -31,12 +31,13 @@ class SharesController < ApplicationController
   # POST /shares.json
   def create
     @share = Share.new(share_params)
+    @share.user_id = current_user.id if current_user
 
     respond_to do |format|
-      if @share.save
+      if current_user && @share.save
         format.json { render action: 'show', status: :created, location: @share }
       else
-        format.json { render json: @share.errors, status: :unprocessable_entity }
+        format.json { render json: {status: false, share: @share} }
       end
     end
   end

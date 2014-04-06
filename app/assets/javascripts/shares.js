@@ -3,19 +3,25 @@ window.Share = {
         var content = $('#'+ele).find("#share_content").val();
         var share_category_id = $('#'+ele).find("#share_category_id").val();
         $.post("/shares", {share: { content: content, category_id: share_category_id }}, function(data){
-            var newArticle = $(template.render("article-template", data));
-            $("#content .wrapper").prepend( newArticle );
-            // 时间绑定
-            newArticle.on("mouseenter",function(event){
-              $(this).find('.more').css('display', 'block');
-            });
-            newArticle.on("mouseleave",function(event){
-              $(this).find('.more').css('display', 'none');
-            });
+            if (data.status) {
+                var newArticle = $(template.render("article-template", data));
+                $("#content .wrapper").prepend( newArticle );
+                // 时间绑定
+                newArticle.on("mouseenter",function(event){
+                  $(this).find('.article-like').css('display', 'block');
+                });
+                newArticle.on("mouseleave",function(event){
+                  $(this).find('.article-like').css('display', 'none');
+                });
 
-            newArticle.css('display', 'none');
-            newArticle.fadeIn(2000);
-            $("#background #operation").empty();
+                newArticle.css('display', 'none');
+                newArticle.fadeIn(2000);
+                $("#background #operation").empty();
+            } else {
+                $('.new-share-link').click();
+                $('.sign-in-link').click();
+                $('#operation input').animate({ 'border-color': "red" }, 500,'linear').animate({ 'border-color': "#ccc" }, 500,'linear');
+            }
         });
     },
     // newShareLink

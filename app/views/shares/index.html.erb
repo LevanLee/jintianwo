@@ -12,9 +12,9 @@
               </p>
               <div class="date">
                 <div class="left_part">
-                  <a href="">#210934488</a>
+                  <%= link_to "##{share.id}", "##{share.id}" %>
                   <br>
-                  <div class="comment-link dyn-comments" data-switch="false">60 评论</div>
+                  <div class="comment-link dyn-comments" data-switch="false"><%= share.comments.size %> 评论</div>
                 </div>
                 <div class="right_part">
                   <p>
@@ -24,20 +24,16 @@
                     </span>
                     <span class="dyn-vote-t" id="votebfidnumber">
                       <a href="javascript:;" class="bf">你活该~</a>
-                      (
-                      <span class="dyn-vote-t-data">1239</span>
-                      )
+                      (<span class="dyn-vote-t-data">1239</span>)
                     </span>
                   </p>
                   <p>
-                    <%= semantic_icon('add') %> 2014/03/22 at 3:01pm -
+                    <%= semantic_icon('add') %> <%= share.created_at.strftime("%Y/%m/%d at %H:%M %P") %> -
                     <a href="/love" class="liencat">love</a>
-                    - by Anonymous
+                    - by <%= share.user.username %>
                     <a href="/gender/woman" class="light"><%= semantic_icon('male') %></a>-
                     <a href="/contry/Canada" class="liencat">Canada</a>
-                    (
-                    <a href="/region/Ontario" class="light">Ontario</a>
-                    )
+                    (<a href="/region/Ontario" class="light">Ontario</a>)
                   </p>
                 </div>
               </div>

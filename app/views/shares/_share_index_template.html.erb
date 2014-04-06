@@ -20,9 +20,9 @@
       </p>
       <div class="date">
         <div class="left_part">
-          <a href="">#210934488</a>
+          <a href="#<?=id ?>">#<?=id ?></a>
           <br>
-          <div class="comment-link dyn-comments" data-switch="false">60 评论</div>
+          <div class="comment-link dyn-comments" data-switch="false"><?=comments_size ?> 评论</div>
         </div>
         <div class="right_part">
           <p>
@@ -40,9 +40,9 @@
             </span>
           </p>
           <p>
-            <%= semantic_icon('add') %> 2014/03/22 at 3:01pm -
+            <%= semantic_icon('add') %> <?=created_at ?> -
             <a href="/love" class="liencat">love</a>
-            - by Anonymous
+            - by <?=username ?>
             <a href="/gender/woman" class="light"><%= semantic_icon('male') %></a>-
             <a href="/contry/Canada" class="liencat">Canada</a>
             (
