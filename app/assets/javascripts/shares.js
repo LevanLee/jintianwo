@@ -65,7 +65,7 @@ window.Share = {
                 newArticle.css('display', 'none');
                 newArticle.fadeIn(800);
             });
-            $('.article .comment-link').on('click', Share.commentLink);
+            $('.article, .article .comment-link').on('click', Share.commentLink);
         })
     },
     // sidebarTagButton
@@ -83,30 +83,32 @@ window.Share = {
     },
     // commentLink
     commentLink: function(event){
-        var _this = $(this);
-        var currentScrollTop = $(document).scrollTop();
         event.preventDefault();
+        var _parent = $(this).closest('.article');
+        var _this = _parent.find('.comment-link');
         if( _this.data('switch') ){
             _this.data('switch', false);
-            _this.parent().find('.comment-content').slideUp();
-            _this.parent().find('.comment-content').empty();
+            _parent.find('.comment-content').slideUp();
+            _parent.find('.comment-content').empty();
+            event.stopPropagation();
         } else {
             _this.data('switch', true);
-            $.get('/shares/comment',function(data){
+            $.get('/shares/comment',{ comment_share: { share_id: _parent.data('share-id') } },function(data){
                 var newTemp = template.compile(data);
                 //var newTemp = $(data);
                 //console.log(template.compile(data));
-                _this.parent().find('.comment-content').append(newTemp);
+                _parent.find('.comment-content').append(newTemp);
                 $('.article .comment-submit-link').on('click', Share.commentSubmitLink);
-                _this.parent().find('.comment-content').slideDown("slow");
+                _parent.find('.comment-content').slideDown("slow");
             });
+            event.stopPropagation();
         }
     },
     // commentSubmitLink
     commentSubmitLink: function(){
         var _this = $(this);
         var _parent = _this.closest('.article');
-        var shareId = _parent.attr('id');
+        var shareId = _parent.data('share-id');
         var contentInput = _parent.find('.comment-input').html();
         if (contentInput == '') {
             _parent.find('.comment-input').animate({ 'border-color': "red" }, 500,'linear').animate({ 'border-color': "#ccc" }, 500,'linear');
@@ -116,7 +118,8 @@ window.Share = {
         $.post('/comments',{comment: { share_id: shareId, content: contentInput }}, function(data){
             switch (data.status) {
                 case 0: {
-                    var newTemp = $(template.render('article-comment-template'));
+                    _parent.find('.comment-input').html('');
+                    var newTemp = $(template.render('article-comment-template',data));
                     newTemp.css('display', 'none');
                     _parent.find('.comment-main').prepend(newTemp);
                     newTemp.fadeIn('slow');
@@ -137,5 +140,5 @@ $(document).ready(function(){
     $(".dashboard .sidebar-tag").on('click', Share.sidebarTagButton);
     $(".menu .nav-tag").on('click', Share.sidebarTagLink);
     $('.sign-in-link, .sign-up-link, .sign-out-link').on('click', Share.clearNewShareLink);
-    $('.article .comment-link').on('click', Share.commentLink);
+    $('.article, .article .comment-link').on('click', Share.commentLink);
 });

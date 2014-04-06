@@ -10,10 +10,16 @@
 }
 
 .article .comment-link, .article .article-like {
-  float: left;
-  width: 8%;
-  margin-top: 20px;
-  margin-left: 14px;
+  float: right;
+  margin-right: 14px;
+  cursor: pointer;
+}
+.article .article-like {
+  position: relative;
+  top: 20px;
+}
+.article .comment-link:hover {
+  color: #dd0000;
 }
 .article .comment-content {
   float: left;

@@ -9,6 +9,7 @@ class SharesController < ApplicationController
   end
 
   def comment
+    @comments = Comment.where(:share_id => share_comment_params[:share_id])
     render layout: false
   end
 
@@ -77,5 +78,9 @@ class SharesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def share_params
       params.require(:share).permit(:content, :category_id)
+    end
+
+    def share_comment_params
+      params.require(:comment_share).permit(:share_id)
     end
 end

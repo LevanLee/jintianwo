@@ -5,7 +5,7 @@
   <div id="content">
     <div class="wrapper">
         <% @shares.each do |share| %>
-            <div class="post article" id="<%= share.id %>">
+            <div class="post article" data-share-id="<%= share.id %>">
               <p>
                 <span class="tooltips new"></span>
                 <a href="/love/21093699" class="fmllink">今天是我们的第六次约会，那个汉子我很喜欢。他问我等我们约会完以后是不是愿意和他的朋友皮特见个面。我说当然啦～ 结果皮特是他的小丁丁。FML</a>
@@ -14,7 +14,7 @@
                 <div class="left_part">
                   <a href="">#210934488</a>
                   <br>
-                  <span class="dyn-comments">60 评论</span>
+                  <div class="comment-link dyn-comments" data-switch="false">60 评论</div>
                 </div>
                 <div class="right_part">
                   <p>
@@ -41,7 +41,6 @@
                   </p>
                 </div>
               </div>
-              <div class="comment-link" data-switch="false">评论</div>
               <div class="article-like" id="more-idnumber" style="display:none;">
                 <%= semantic_icon('empty star') %>
               </div>

@@ -13,7 +13,7 @@
 </script>
 
 <script id="article-template" type="text/html">
-  <div class="post article" id="<?=id ?>">
+  <div class="post article" data-share-id="<?=id ?>">
       <p>
         <span class="tooltips new"></span>
         <a href="/love/21093699" class="fmllink"><?=content?></a>
@@ -22,7 +22,7 @@
         <div class="left_part">
           <a href="">#210934488</a>
           <br>
-          <span class="dyn-comments">60 评论</span>
+          <div class="comment-link dyn-comments" data-switch="false">60 评论</div>
         </div>
         <div class="right_part">
           <p>
@@ -51,7 +51,6 @@
           </p>
         </div>
       </div>
-      <div class="comment-link" data-switch="false">评论</div>
       <div class="article-like" id="more-idnumber" style="display:none;">
         <%= semantic_icon('empty star') %>
       </div>
@@ -108,7 +107,7 @@
         <img class="ui avatar image" src="http://l.ruby-china.org/user/large_avatar/12172.jpg">
         <div class="content">
         <div class="header">Snickerdoodle</div>
-          An excellent companion
+            <?=content?>
         </div>
     </div>
 </script>
