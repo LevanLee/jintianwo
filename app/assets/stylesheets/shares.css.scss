@@ -3,7 +3,6 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 #operation {
-  width: 1024px ;
   height: 1px;
   left: 12%;
   margin: 0 auto;
@@ -32,6 +31,9 @@
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 3px;
+  appearance: none;
+  -webkit-appearance: none;
+  -webkit-appearance: none;
 }
 .article .comment-footer {
   float: right;

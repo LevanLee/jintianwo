@@ -7,12 +7,7 @@ window.Share = {
                 var newArticle = $(template.render("article-template", data));
                 $("#content .wrapper").prepend( newArticle );
                 // 时间绑定
-                newArticle.on("mouseenter",function(event){
-                  $(this).find('.article-like').css('display', 'block');
-                });
-                newArticle.on("mouseleave",function(event){
-                  $(this).find('.article-like').css('display', 'none');
-                });
+                if (!Sign.isTouchDevice() ){ Sign.articleEventBind(newArticle) }
 
                 newArticle.css('display', 'none');
                 newArticle.fadeIn(2000);
@@ -60,13 +55,7 @@ window.Share = {
             $(data).each(function(index, element){
                 var newArticle = $(template.render("article-template", element));
                 $("#content .wrapper").append(newArticle);
-                // 时间绑定
-                newArticle.on("mouseenter",function(event){
-                  $(this).find('.article-like').css('display', 'block');
-                });
-                newArticle.on("mouseleave",function(event){
-                  $(this).find('.article-like').css('display', 'none');
-                });
+                if (!Sign.isTouchDevice() ){ Sign.articleEventBind(newArticle) }
 
                 newArticle.css('display', 'none');
                 newArticle.fadeIn(800);
@@ -104,6 +93,7 @@ window.Share = {
                 //var newTemp = $(data);
                 //console.log(template.compile(data));
                 _parent.find('.comment-content').append(newTemp);
+                _parent.find('.comment-input').on('click', function(event){ event.stopPropagation() });
                 $('.article .comment-submit-link').on('click', Share.commentSubmitLink);
                 _parent.find('.comment-content').slideDown("slow");
             });
@@ -111,11 +101,11 @@ window.Share = {
         }
     },
     // commentSubmitLink
-    commentSubmitLink: function(){
+    commentSubmitLink: function(event){
         var _this = $(this);
         var _parent = _this.closest('.article');
         var shareId = _parent.data('share-id');
-        var contentInput = _parent.find('.comment-input').html();
+        var contentInput = _parent.find('.comment-input').val();
         if (contentInput == '') {
             _parent.find('.comment-input').animate({ 'border-color': "red" }, 500,'linear').animate({ 'border-color': "#ccc" }, 500,'linear');
             return false;
@@ -124,7 +114,7 @@ window.Share = {
         $.post('/comments',{comment: { share_id: shareId, content: contentInput }}, function(data){
             switch (data.status) {
                 case 0: {
-                    _parent.find('.comment-input').html('');
+                    _parent.find('.comment-input').val('');
                     var newTemp = $(template.render('article-comment-template',data));
                     newTemp.css('display', 'none');
                     _parent.find('.comment-main').prepend(newTemp);
@@ -138,6 +128,7 @@ window.Share = {
                 }
             }
         });
+        event.stopPropagation();
     }
 
 };

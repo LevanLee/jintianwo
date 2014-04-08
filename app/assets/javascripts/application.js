@@ -61,20 +61,36 @@ window.Sign = {
                 $('.sign-status .sign-up-link').on('click', Sign.signUpLink);
             }
         }});
+    },
+    isTouchDevice: function(){
+        var deviceAgent = navigator.userAgent.toLowerCase();
+
+        var isTouchDevice =  deviceAgent.match(/(iphone|ipod|ipad)/) ||
+            deviceAgent.match(/(android)/)||
+            deviceAgent.match(/(iemobile)/) ||
+            deviceAgent.match(/iphone/i) ||
+            deviceAgent.match(/ipad/i) ||
+            deviceAgent.match(/ipod/i) ||
+            deviceAgent.match(/blackberry/i) ||
+            deviceAgent.match(/bada/i);
+        return isTouchDevice;
+    },
+    articleEventBind: function(element){
+        $(element).on("mouseenter",function(event){
+            $(this).find('.article-like').css('display', 'block');
+        });
+        $(element).on("mouseleave",function(event){
+            $(this).find('.article-like').css('display', 'none');
+        });
     }
 };
 
 $(document).ready(function(){
-    $('.article').on("mouseenter",function(event){
-      $(this).find('.article-like').css('display', 'block');
-    });
-    $('.article').on("mouseleave",function(event){
-      $(this).find('.article-like').css('display', 'none');
-    });
     $('.sign-status .sign-in-link').on('click', Sign.signInLink);
     $('.sign-status .sign-up-link').on('click', Sign.signUpLink);
     $('.sign-status .sign-out-link').on('click', Sign.signOutLink);
     $(".item .new-share-link").on('click', Share.newShareLink);
+    if (!Sign.isTouchDevice() ){ Sign.articleEventBind(".article") }
 });
 
 template.openTag = "<?";
