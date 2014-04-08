@@ -6,7 +6,7 @@
     </div>
     <div class="right menu">
       <div class="item">
-        <%= link_to new_share_path, class: "new-share-link" do %>
+        <%= link_to new_share_path, class: "new-share-link", 'data-switch' => false do %>
           <i class="edit icon"></i>
         <% end %>
       </div>
@@ -19,14 +19,9 @@
       <div class="ui simple dropdown item">
         类目 <i class="dropdown icon"></i>
         <div class="menu">
-          <a class="item">爱情</a>
-          <a class="item">动物</a>
-          <a class="item">金钱</a>
-          <a class="item">孩子</a>
-          <a class="item">工作</a>
-          <a class="item">健康</a>
-          <a class="item">XXOO</a>
-          <a class="item">杂项</a>
+          <% @categories.each do |category| %>
+            <%= link_to category.name, "javascript:void(0);", class: 'item nav-tag', "data-id" => category.id %>
+          <% end %>
         </div>
       </div>
       <div class="item sign-status">

@@ -1,8 +1,11 @@
 Jintianwo::Application.routes.draw do
+  resources :comments
+
   devise_for :users, :controllers => { sessions: 'sessions', registrations: 'registrations' }
   resources :categories
   resources :shares do
     get 'tag', on: :collection
+    get 'comment', on: :collection
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -8,3 +8,38 @@
   left: 12%;
   margin: 0 auto;
 }
+
+.article .comment-link, .article .article-like {
+  float: right;
+  margin-right: 14px;
+  cursor: pointer;
+}
+.article .article-like {
+  position: relative;
+  top: 20px;
+}
+.article .comment-link:hover {
+  color: #dd0000;
+}
+.article .comment-content {
+  float: left;
+  width: 100%;
+}
+.article .comment-input {
+  width: 650px;
+  float: right;
+  height: 60px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+.article .comment-footer {
+  float: right;
+  width: 100%;
+  margin: 5px 0px;
+  position: relative;
+}
+.article .comment-submit-link {
+  margin: 5px 0px;
+  float: right;
+}

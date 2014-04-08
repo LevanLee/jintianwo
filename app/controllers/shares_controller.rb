@@ -4,8 +4,13 @@ class SharesController < ApplicationController
   # GET /shares
   # GET /shares.json
   def index
-    @shares = Share.all
+    @shares = Share.limit(2).order('id desc')
     @categories = Category.all
+  end
+
+  def comment
+    @comments = Comment.where(:share_id => share_comment_params[:share_id])
+    render layout: false
   end
 
   # GET /shares/1
@@ -26,12 +31,13 @@ class SharesController < ApplicationController
   # POST /shares.json
   def create
     @share = Share.new(share_params)
+    @share.user_id = current_user.id if current_user
 
     respond_to do |format|
-      if @share.save
+      if current_user && @share.save
         format.json { render action: 'show', status: :created, location: @share }
       else
-        format.json { render json: @share.errors, status: :unprocessable_entity }
+        format.json { render json: {status: false, share: @share} }
       end
     end
   end
@@ -73,5 +79,9 @@ class SharesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def share_params
       params.require(:share).permit(:content, :category_id)
+    end
+
+    def share_comment_params
+      params.require(:comment_share).permit(:share_id)
     end
 end
