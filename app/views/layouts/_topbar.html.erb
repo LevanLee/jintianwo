@@ -26,7 +26,7 @@
       </div>
       <div class="item sign-status">
         <% if user_signed_in? %>
-        <%= current_user.username %>
+        <%= link_to "#{current_user.username}",'#' , class:"ui orange button" %>
         <%= link_to "退出", destroy_user_session_path, class: "sign-out-link", method: :delete %>
         <% else %>
         <%= link_to "登录", new_user_session_path, class:"ui orange button sign-in-link" %>
