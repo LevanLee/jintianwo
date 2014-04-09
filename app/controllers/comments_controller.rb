@@ -30,7 +30,8 @@ class CommentsController < ApplicationController
 
     #render :json => {status: 0, user: current_user, content: @comment.content}
     if current_user && @comment.save
-      render :json => {status: 0, user: current_user, content: @comment.content}
+      comment_size = Share.find(comment_params['share_id']).comments.size
+      render :json => {status: 0, user: current_user, content: @comment.content, comment_size: comment_size}
     else
       render :json => {status: 1, user: nil}
     end

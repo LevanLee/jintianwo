@@ -12,6 +12,7 @@ window.Share = {
                 newArticle.css('display', 'none');
                 newArticle.fadeIn(2000);
                 $("#background #operation").empty();
+                $(".new-share-link").click();
             } else {
                 $('.new-share-link').click();
                 $('.sign-in-link').click();
@@ -119,6 +120,7 @@ window.Share = {
                     newTemp.css('display', 'none');
                     _parent.find('.comment-main').prepend(newTemp);
                     newTemp.fadeIn('slow');
+                    _parent.find('.comment-link').text(data.comment_size + ' 评论');
                     break;
                 }
                 case 1: {
