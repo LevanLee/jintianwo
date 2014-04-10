@@ -7,6 +7,10 @@ Jintianwo::Application.routes.draw do
     get 'tag', on: :collection
     get 'comment', on: :collection
   end
+
+  namespace :admin do
+    resources :shares
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
