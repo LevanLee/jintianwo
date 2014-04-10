@@ -1,0 +1,19 @@
+default: &default
+
+
+development:
+  <<: *default
+  admin_emails:
+    - admin@example.com
+    - asdf@qq.com
+
+test:
+  <<: *default
+  admin_emails:
+    - admin@example.com
+
+production:
+  <<: *default
+
+  admin_emails:
+    # - admin@example.com
