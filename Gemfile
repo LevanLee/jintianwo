@@ -5,6 +5,7 @@ gem 'puma'
 gem 'semantic-ui-sass', github: 'doabit/semantic-ui-sass'
 
 gem 'devise'
+gem 'quiet_assets', :git => 'git://github.com/AgilionApps/quiet_assets.git'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

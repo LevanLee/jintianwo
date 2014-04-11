@@ -1,4 +1,10 @@
 GIT
+  remote: git://github.com/AgilionApps/quiet_assets.git
+  revision: c42e29264a61a5431cc09282df597242c003ebe6
+  specs:
+    quiet_assets (0.0.1)
+
+GIT
   remote: git://github.com/doabit/semantic-ui-sass.git
   revision: ba094be04ef74010b257bc7b80fa5e142d3b8fc1
   specs:
@@ -134,6 +140,7 @@ DEPENDENCIES
   jquery-rails
   mysql2
   puma
+  quiet_assets!
   rails (= 4.0.2)
   sass-rails (~> 4.0.0)
   sdoc
