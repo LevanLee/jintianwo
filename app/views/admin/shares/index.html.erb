@@ -1,2 +1,22 @@
-<h1>Admin::Shares#index</h1>
-<p>Find me in app/views/admin/shares/index.html.erb</p>
+<div class="row">
+  <div class="col-md-6 col-md-offset-1">
+      <h1>Admin::Shares#index</h1>
+      <div id="template-tmp"></div>
+      <div id="article-lists">
+          <% @shares.each do |share| %>
+              <%= render partial: "article", object: share, as: :share %>
+          <% end %>
+      </div>
+  </div>
+  <div class="col-md-4">
+      <div class="row user-info" data-user-id="1">
+          <div class="col-md-9 user-name">asdf</div>
+          <div class="col-md-3">
+              <button type="button" class="btn btn-danger pull-right">更换</button>
+          </div>
+      </div>
+  </div>
+  <div class="col-md-4">
+      <%= render partial: "form" %>
+  </div>
+</div>

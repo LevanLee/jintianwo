@@ -1,0 +1,37 @@
+<div class="post article well" data-share-id="<%= share.id %>">
+  <p>
+    <span class="tooltips new"></span>
+    <a href="/love/21093699" class="fmllink"><%= share.content %></a>
+  </p>
+  <div class="date">
+    <div class="left_part">
+      <%= link_to "##{share.id}", "##{share.id}" %>
+      <br>
+      <div class="comment-link dyn-comments" data-switch="false"><%= share.comments.size %> 评论</div>
+    </div>
+    <div class="right_part">
+      <p>
+        <span class="dyn-vote-j" id="voteidnumber">
+          <a href="javascript:;">赞~</a>
+          (<span class="dyn-vote-j-data">100</span>) -
+        </span>
+        <span class="dyn-vote-t" id="votebfidnumber">
+          <a href="javascript:;" class="bf">你活该~</a>
+          (<span class="dyn-vote-t-data">1239</span>)
+        </span>
+      </p>
+      <p>
+        <%= semantic_icon('add') %> <%= share.created_at.strftime("%Y/%m/%d at %H:%M %P") %> -
+        <a href="/love" class="liencat">love</a>
+        - by <%= share.user.username %>
+        <a href="/gender/woman" class="light"><%= semantic_icon('male') %></a>-
+        <a href="/contry/Canada" class="liencat">Canada</a>
+        (<a href="/region/Ontario" class="light">Ontario</a>)
+      </p>
+    </div>
+  </div>
+  <div class="article-like" id="more-idnumber" style="display:none;">
+    <%= semantic_icon('empty star') %>
+  </div>
+  <div class="comment-content" style="display:none;"></div>
+</div>

@@ -1,3 +1,9 @@
 // Place all the styles related to the Admin::Shares controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.user-info .user-name {
+  text-align: right;
+  line-height: 34px;
+  height: 34px;
+}
