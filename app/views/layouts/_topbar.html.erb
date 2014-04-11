@@ -1,15 +1,13 @@
 <div class="topbar">
   <div class="ui large menu">
-    <a class="item">
-      今天,我
-    </a>
+    <%= link_to "今天,我" , root_path, class:"item" %>
     <div class="ui label">
       <a href=""><i class="mail icon"></i> 23</a>
     </div>
     <div class="right menu">
       <div class="item">
         <%= link_to new_share_path, class: "new-share-link", 'data-switch' => false do %>
-          <i class="edit icon"></i>
+        <i class="edit icon"></i>
         <% end %>
       </div>
       <div class="item">
@@ -22,16 +20,17 @@
         类目 <i class="dropdown icon"></i>
         <div class="menu">
           <% @categories.each do |category| %>
-            <%= link_to category.name, "javascript:void(0);", class: 'item nav-tag', "data-id" => category.id %>
+          <%= link_to category.name, "javascript:void(0);", class: 'item nav-tag', "data-id" => category.id %>
           <% end %>
         </div>
       </div>
       <div class="item sign-status">
         <% if user_signed_in? %>
-          <%= link_to "退出", destroy_user_session_path, class: "sign-out-link", method: :delete %>
+        <%= link_to "#{current_user.username}",'#' , class:"ui orange button" %>
+        <%= link_to "退出", destroy_user_session_path, class: "sign-out-link", method: :delete %>
         <% else %>
-          <%= link_to "登录", new_user_session_path, class:"ui orange button sign-in-link" %>
-          <%= link_to "注册", new_user_registration_path, class:"ui orange button sign-up-link" %>
+        <%= link_to "登录", new_user_session_path, class:"ui orange button sign-in-link" %>
+        <%= link_to "注册", new_user_registration_path, class:"ui orange button sign-up-link" %>
         <% end %>
       </div>
     </div>
