@@ -19,9 +19,16 @@ window.Share = {
             $(newTemp).css('display', 'none');
             $(newTemp).slideDown("slow");
         });
+    },
+    adminUserRandom: function(){
+        $.getJSON('/admin/sessions/random', function(data){
+            $('.user-info').data('user-id', data.user.id);
+            $('.user-info .user-name').text(data.user.username);
+        });
     }
 }
 
 $(document).ready(function(){
     $('.admin-shares-form .admin-new-shares-submit').on('click', Share.adminNewSharesSubmit);
+    $('.admin-user-random-link').on('click', Share.adminUserRandom);
 });
