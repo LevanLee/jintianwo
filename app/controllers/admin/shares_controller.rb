@@ -1,4 +1,6 @@
 class Admin::SharesController < ApplicationController
+  include Auth
+  before_filter :admin_validation
   layout "admin"
 
   def index
