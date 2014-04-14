@@ -80,23 +80,32 @@
 </script>
 
 <script id="sign-up-template" type="text/html">
-    <h2>Sign up</h2>
-
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name), remote: true) do |f| %>
 
-      <div><%= f.label :username %><br />
-      <%= f.text_field :username %></div>
-
-      <div><%= f.label :email %><br />
-      <%= f.email_field :email, autofocus: true %></div>
-
-      <div><%= f.label :password %><br />
-        <%= f.password_field :password, autocomplete: "off" %></div>
-
-      <div><%= f.label :password_confirmation %><br />
-        <%= f.password_field :password_confirmation, autocomplete: "off" %></div>
-
-      <div><%= f.submit "Sign up" %></div>
+      <div class="ui three column grid">
+          <div class="column right floated">
+              <div class="ui fluid form segment">
+                  <h3 class="ui header">注册今天我</h3>
+                  <div class="field">
+                      <label>用户名</label>
+                      <input id="user_username" placeholder="用户名" name="user[username]" type="text">
+                  </div>
+                  <div class="field">
+                      <label>用户名</label>
+                      <input id="user_email" placeholder="邮箱" name="user[email]" type="text">
+                  </div>
+                  <div class="field">
+                      <label>密码</label>
+                      <input id="user_password" name="user[password]" type="password">
+                  </div>
+                  <div class="field">
+                      <label>密码</label>
+                      <input id="user_password_confirmation" name="user[password_confirmation]" type="password">
+                  </div>
+                  <div><input class="ui blue submit button" name="commit" type="submit" value="注册"></div>
+              </div>
+          </div>
+      </div>
     <% end %>
 </script>
 
