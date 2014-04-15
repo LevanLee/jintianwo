@@ -151,6 +151,9 @@ window.Share = {
             $(fieldError).animate({ 'border-color': "red" }, 500,'linear').delay(500).animate({ 'border-color': startColor }, 500,'linear');
             return true;
         }
+    },
+    closeButton: function(){
+        $("#operation").empty();
     }
 };
 

@@ -69,7 +69,8 @@
     <form accept-charset="UTF-8" action="/users/sign_in" class="new_user" data-remote="true" id="new_user" method="post">
       <div class="ui three column grid">
           <div class="column right floated">
-              <div class="ui fluid form segment">
+              <div class="ui fluid form segment sign-in-pos-box">
+                  <div class="close-button" onclick="return Share.closeButton()"><i class="large remove sign icon"></i></div>
                   <h3 class="ui header">登录今天我</h3>
                   <div class="field">
                       <label>用户名</label>
@@ -91,7 +92,8 @@
 
       <div class="ui three column grid">
           <div class="column right floated">
-              <div class="ui fluid form segment" style="z-index:1;">
+              <div class="ui fluid form segment sign-up-pos-box" style="z-index:1;">
+                  <div class="close-button" onclick="return Share.closeButton()"><i class="large remove sign icon"></i></div>
                   <h3 class="ui header">注册今天我</h3>
                   <div class="field">
                       <label>用户名</label>
