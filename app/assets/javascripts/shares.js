@@ -1,7 +1,7 @@
 window.Share = {
     submitFrom : function(ele){
         var content = $('#'+ele).find("#share_content").val();
-        var share_category_id = $('#'+ele).find("#share_category_id").val();
+        var share_category_id = $('#'+ele).find(".fields-category input[type='radio']:checked").val();
         $.post("/shares", {share: { content: content, category_id: share_category_id }}, function(data){
             if (data.status) {
                 var newArticle = $(template.render("article-template", data));
@@ -40,6 +40,7 @@ window.Share = {
             $("#background #operation").empty().append(newShareTemplate);
             _this.off();
             _this.on('click', Share.newShareLink);
+            $('.ui.radio.checkbox').checkbox();
         }
     },
     // sidebarTagLink

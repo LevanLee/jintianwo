@@ -1,15 +1,22 @@
 <script id="new-share-template" type="text/html">
-<form accept-charset="UTF-8" action="/shares" class="new_share" id="new_share" method="post">
-    <div class="field">
-      <label for="share_content">Content</label><br>
-      <input id="share_content" name="share[content]" type="text">
-    </div>
-    <div class="field">
-      <label for="share_category_id">Category</label><br>
-      <input id="share_category_id" name="share[category_id]" type="text">
-    </div>
-    <a href="javascript:void(0);" onClick="return Share.submitFrom('new_share')">dianji</a>
-</form>
+  <div id="new_share" class="ui form">
+      <div class="ui grouped inline segment fields-category">
+          <% @categories.each do |category| %>
+            <div class="field-category">
+                <div class="ui radio checkbox">
+                    <%= radio_button_tag "share[category_id]", category.id %>
+                    <%= label_tag "share[category_id]", category.name %>
+                </div>
+            </div>
+          <% end %>
+          <div class="field">
+            <%= text_area_tag "share[content]", nil, id: "share_content" %>
+          </div>
+          <div class="field">
+            <%= link_to "提交", "javascript:void(0);", "onclick" =>  "return Share.submitFrom('new_share')", class: "ui secondary button" %>
+          </div>
+      </div>
+  </div>
 </script>
 
 <script id="article-template" type="text/html">
