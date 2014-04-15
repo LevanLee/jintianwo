@@ -2,6 +2,9 @@ window.Share = {
     submitFrom : function(ele){
         var content = $('#'+ele).find("#share_content").val();
         var share_category_id = $('#'+ele).find(".fields-category input[type='radio']:checked").val();
+        // 提交验证
+        if(Share.formFieldColorAuth( ".fields-category input[type='radio']:checked", ".field-category label")){ return false; };
+        if(Share.formFieldBorderAuth( "#new_share #share_content", "#new_share #share_content")){ return false; };
         $.post("/shares", {share: { content: content, category_id: share_category_id }}, function(data){
             if (data.status) {
                 var newArticle = $(template.render("article-template", data));
@@ -132,9 +135,26 @@ window.Share = {
             }
         });
         event.stopPropagation();
+    },
+    // 两种验证，color 将 color 高亮
+    formFieldColorAuth: function(field, fieldError){
+        if( $(field).val() == "" || $.trim( $(field).val() ) == "" ){
+            var startColor = $(fieldError).css('color');
+            $(fieldError).animate({ 'color': "red" }, 500,'linear').delay(500).animate({ 'color': startColor }, 500,'linear')
+            return true;
+        }
+    },
+    // 两种验证，border 将 border 高亮
+    formFieldBorderAuth: function(field, fieldError){
+        if( $(field).val() == "" || $.trim( $(field).val() ) == "" ){
+            var startColor = $(fieldError).css('border-color');
+            $(fieldError).animate({ 'border-color': "red" }, 500,'linear').delay(500).animate({ 'border-color': startColor }, 500,'linear');
+            return true;
+        }
     }
-
 };
+
+
 $(document).ready(function(){
     $(".dashboard .sidebar-tag").on('click', Share.sidebarTagLink);
     $(".dashboard .sidebar-tag").on('click', Share.sidebarTagButton);

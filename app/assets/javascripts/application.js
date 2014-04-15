@@ -26,6 +26,11 @@ window.Sign = {
         event.preventDefault();
         var newShareTemplate = $(template.render("sign-in-template"));
         $("#background #operation").empty().append(newShareTemplate);
+        // 提交验证
+        $("form#new_user").on("ajax:before", function(){
+            if(Share.formFieldBorderAuth( "#new_user #user_username", "#new_user #user_username")){ return false; };
+            if(Share.formFieldBorderAuth( "#new_user #user_password", "#new_user #user_password")){ return false; };
+        });
         $("form#new_user").bind("ajax:success", function(e, data, status, xhr){
             if(data.success){
                 $("#background #operation").empty();
@@ -41,6 +46,13 @@ window.Sign = {
         event.preventDefault();
         var newShareTemplate = $(template.render("sign-up-template"));
         $("#background #operation").empty().append(newShareTemplate);
+        // 提交验证
+        $("form#new_user").on("ajax:before", function(){
+            if(Share.formFieldBorderAuth( "#new_user #user_username", "#new_user #user_username")){ return false; };
+            if(Share.formFieldBorderAuth( "#new_user #user_email", "#new_user #user_email")){ return false; };
+            if(Share.formFieldBorderAuth( "#new_user #user_password", "#new_user #user_password")){ return false; };
+            if(Share.formFieldBorderAuth( "#new_user #user_password_confirmation", "#new_user #user_password_confirmation")){ return false; };
+        });
         $("form#new_user").bind("ajax:success", function(e, data, status, xhr){
             if(data.success){
                 $("#background #operation").empty();
