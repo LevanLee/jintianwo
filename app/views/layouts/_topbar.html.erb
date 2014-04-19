@@ -19,8 +19,9 @@
       <div class="ui simple dropdown item">
         类目 <i class="dropdown icon"></i>
         <div class="menu">
+          <%= link_to "全部", "javascript:void(0);", class: "item nav-tag", "data-id" => 0, "data-type" => "all" %>
           <% @categories.each do |category| %>
-          <%= link_to category.name, "javascript:void(0);", class: 'item nav-tag', "data-id" => category.id %>
+            <%= link_to category.name, "javascript:void(0);", class: 'item nav-tag', "data-id" => category.id, "data-type" => "alone" %>
           <% end %>
         </div>
       </div>

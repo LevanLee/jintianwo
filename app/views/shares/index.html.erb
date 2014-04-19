@@ -50,8 +50,9 @@
           <h4>类目</h4>
           <div class="ctlabel">
             <div class="ui mini labels">
+              <%= content_tag :div, "全部", class: "ui small label sidebar-tag", "data-id" => 0, "data-type" => "all" %>
               <% @categories.each do |category| %>
-                <%= content_tag :div, category.name, :class => "ui small label sidebar-tag", "data-id" => category.id %>
+                <%= content_tag :div, category.name, :class => "ui small label sidebar-tag", "data-id" => category.id, "data-type" => "alone" %>
               <% end %>
             </div>
           </div>

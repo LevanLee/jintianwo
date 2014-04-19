@@ -68,7 +68,12 @@ class SharesController < ApplicationController
   end
 
   def tag
-    @shares = Share.where(category_id: params[:category]).order('created_at desc')
+    case params[:tag_type]
+    when "all"
+      @shares = Share.all
+    when "alone"
+      @shares = Share.where(category_id: params[:category]).order('created_at desc')
+    end
   end
 
   private

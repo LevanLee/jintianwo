@@ -55,7 +55,8 @@ window.Share = {
             $(element).removeClass('green');
         });
         var categoryId = _this.data('id');
-        $.getJSON('/shares/tag', {category: categoryId}, function(data){
+        var tagType    = _this.data('type');
+        $.getJSON('/shares/tag', {tag_type: tagType, category: categoryId}, function(data){
             $("#content .wrapper").empty();
             $(data).each(function(index, element){
                 var newArticle = $(template.render("article-template", element));
