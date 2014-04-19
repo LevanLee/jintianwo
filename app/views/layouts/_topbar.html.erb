@@ -26,8 +26,13 @@
       </div>
       <div class="item sign-status">
         <% if user_signed_in? %>
-        <%= link_to "#{current_user.username}",'#' , class:"ui orange button" %>
-        <%= link_to "退出", destroy_user_session_path, class: "sign-out-link", method: :delete %>
+            <div class="ui left simple dropdown icon">
+                <i class="settings icon"></i>
+                <div class="menu">
+                    <div class="item"><i class="edit icon"></i>编辑</div>
+                    <div class="item sign-out-link"><i class="delete icon"></i>删除</div>
+                </div>
+            </div>
         <% else %>
         <%= link_to "登录", new_user_session_path, class:"ui orange button sign-in-link" %>
         <%= link_to "注册", new_user_registration_path, class:"ui orange button sign-up-link" %>

@@ -119,7 +119,13 @@
 </script>
 
 <script id="sign-success-template" type="text/html">
-    <%= link_to "退出", destroy_user_session_path, class: "sign-out-link", method: :delete, remote: true %>
+    <div class="ui left simple dropdown icon">
+        <i class="settings icon"></i>
+        <div class="menu">
+            <div class="item"><i class="edit icon"></i>编辑</div>
+            <div class="item sign-out-link"><i class="delete icon"></i>删除</div>
+        </div>
+    </div>
 </script>
 
 <script id="sign-out-success-template" type="text/html">
