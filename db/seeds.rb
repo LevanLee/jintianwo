@@ -7,3 +7,11 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 categories = Category.create([{ name: '爱情'}, { name: '动物'}, { name: '金钱'}, { name: '孩子'}, { name: '工作'}, { name: '健康'}, { name: 'XXOO'}, { name: '杂项'}])
+user0 = User.create!(username: "Levan", 
+					name: "Li Fan", 
+					gender: "man", 
+					email: "levanlifan@gmail.com", 
+					sign_in_count: 2, 
+					password: "asdfasdf")
+
+p user0
