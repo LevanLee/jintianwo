@@ -67,6 +67,8 @@ window.Share = {
                 newArticle.fadeIn(800);
             });
             $('.article, .article .comment-link').on('click', Share.commentLink);
+            Share.articleFavouriteInit();
+            $('.article .article-like').on("click", Share.favouriteLink);
         })
     },
     // sidebarTagButton
@@ -156,8 +158,21 @@ window.Share = {
     closeButton: function(){
         $("#operation").empty();
     },
-    articleShowFavourite: function(){
-        $(".article[data-liked='true'] .article-like").css('display', 'black');
+    // articleShowFavourite 用户将 favourite start 显示出来
+    articleShowFavourite: function(ele){
+        $(ele).css('display', 'black');
+        $(ele).find("i").css('color', 'yellow');
+        $(ele).off('mouseenter');
+        $(ele).off('mouseleave');
+    },
+    // 在初次加载页面时 将 favourite star 显示出来， 切换 tag 时也需要调用
+    articleFavouriteInit: function(){
+        $(".article").each(function(index,element){
+            if ( $(element).data("liked") ) {
+                $(this).find(".article-like").css('display', 'black');
+                $(this).find(".article-like i").css('color', 'yellow');
+            }
+        });
     },
     // 收藏 favourite
     favouriteLink: function(event){
@@ -168,10 +183,8 @@ window.Share = {
         $.get('/shares/favourite', {favourite_type: favouriteType, share_id: shareId}, function(data){
             if (data.status) {
                 if (data.liked) {
-                    _this.find('i').css('color', 'yellow');
                     _this.closest(".article").data('liked', true);
-                    _this.closest('.article').off('mouseenter');
-                    _this.closest('.article').off('mouseleave');
+                    Share.articleShowFavourite(_this);
                 } else {
                     _this.find('i').css('color', 'black');
                     _this.closest(".article").data('liked', false);
@@ -193,5 +206,5 @@ $(document).ready(function(){
     $('.sign-in-link, .sign-up-link, .sign-out-link').on('click', Share.clearNewShareLink);
     $('.article, .article .comment-link').on('click', Share.commentLink);
     $('.article .article-like').on("click", Share.favouriteLink);
-    Share.articleShowFavourite();
+    Share.articleFavouriteInit();
 });

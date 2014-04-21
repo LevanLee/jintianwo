@@ -20,7 +20,7 @@
 </script>
 
 <script id="article-template" type="text/html">
-  <div class="post article" data-share-id="<?=id ?>">
+  <div class="post article" data-share-id="<?=id ?>" data-liked="<?=liked.toString() ?>">
       <p>
         <span class="tooltips new"></span>
         <a href="/love/21093699" class="fmllink"><?=content?></a>
@@ -58,7 +58,7 @@
           </p>
         </div>
       </div>
-      <div class="article-like" id="more-idnumber" style="display:none;">
+      <div class="article-like" id="more-idnumber" style="display:none;" data-share-id="<?=id?>">
         <%= semantic_icon('empty star') %>
       </div>
       <div class="comment-content" style="display:none;"></div>
