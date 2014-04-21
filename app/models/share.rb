@@ -3,5 +3,7 @@ class Share < ActiveRecord::Base
   belongs_to :user
   has_many :comments
 
+  serialize :favourite_user, Array
+
   validates_presence_of :content, :category_id
 end

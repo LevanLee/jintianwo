@@ -5,6 +5,7 @@ Jintianwo::Application.routes.draw do
   resources :categories
   resources :shares do
     get 'tag', on: :collection
+    get 'favourite', on: :collection
     get 'comment', on: :collection
   end
 

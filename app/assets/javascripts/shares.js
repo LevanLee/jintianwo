@@ -155,6 +155,33 @@ window.Share = {
     },
     closeButton: function(){
         $("#operation").empty();
+    },
+    articleShowFavourite: function(){
+        $(".article[data-liked='true'] .article-like").css('display', 'black');
+    },
+    // 收藏 favourite
+    favouriteLink: function(event){
+        event.stopPropagation();
+        var _this = $(this);
+        var shareId = _this.data('share-id');
+        var favouriteType = _this.closest(".article").data('liked') ? "unfavourite" : "favourite";
+        $.get('/shares/favourite', {favourite_type: favouriteType, share_id: shareId}, function(data){
+            if (data.status) {
+                if (data.liked) {
+                    _this.find('i').css('color', 'yellow');
+                    _this.closest(".article").data('liked', true);
+                    _this.closest('.article').off('mouseenter');
+                    _this.closest('.article').off('mouseleave');
+                } else {
+                    _this.find('i').css('color', 'black');
+                    _this.closest(".article").data('liked', false);
+                    Sign.articleEventBind(_this.closest('.article'));
+                }
+            } else {
+              $(document).scrollTop(0);
+              $('.sign-status .sign-in-link').click();
+            }
+        });
     }
 };
 
@@ -165,4 +192,6 @@ $(document).ready(function(){
     $(".menu .nav-tag").on('click', Share.sidebarTagLink);
     $('.sign-in-link, .sign-up-link, .sign-out-link').on('click', Share.clearNewShareLink);
     $('.article, .article .comment-link').on('click', Share.commentLink);
+    $('.article .article-like').on("click", Share.favouriteLink);
+    Share.articleShowFavourite();
 });

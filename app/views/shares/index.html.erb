@@ -5,7 +5,7 @@
   <div id="content">
     <div class="wrapper">
         <% @shares.each do |share| %>
-            <div class="post article" data-share-id="<%= share.id %>">
+            <div class="post article" data-share-id="<%= share.id %>" data-liked="<%= share.favourite_user.include?(current_user.id) ? true : false %>">
               <p>
                 <span class="tooltips new"></span>
                 <a href="/love/21093699" class="fmllink">今天是我们的第六次约会，那个汉子我很喜欢。他问我等我们约会完以后是不是愿意和他的朋友皮特见个面。我说当然啦～ 结果皮特是他的小丁丁。FML</a>
@@ -37,7 +37,7 @@
                   </p>
                 </div>
               </div>
-              <div class="article-like" id="more-idnumber" style="display:none;">
+              <div class="article-like" id="more-idnumber" style="display:none;" data-share-id="<%= share.id %>" >
                 <%= semantic_icon('empty star') %>
               </div>
               <div class="comment-content" style="display:none;"></div>

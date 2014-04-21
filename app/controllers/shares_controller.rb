@@ -5,7 +5,7 @@ class SharesController < ApplicationController
   # GET /shares
   # GET /shares.json
   def index
-    @shares = Share.limit(2).order('id desc')
+    @shares = Share.all.order('id desc')
     @categories = Category.all
   end
 
@@ -70,9 +70,26 @@ class SharesController < ApplicationController
   def tag
     case params[:tag_type]
     when "all"
-      @shares = Share.all
+      @shares = Share.all.order("id desc")
     when "alone"
       @shares = Share.where(category_id: params[:category]).order('created_at desc')
+    end
+  end
+
+  def favourite
+    case params[:favourite_type]
+    when "favourite"
+      @share = Share.find(params[:share_id])
+      @share.favourite_user.push(current_user.id) if current_user
+    when "unfavourite"
+      @share = Share.find(params[:share_id])
+      @share.favourite_user.delete(current_user.id) if current_user
+    end
+
+    if current_user && @share.save
+      render :json => { status: true, share: @share, liked: @share.favourite_user.include?(current_user.id) }
+    else
+      render :json => { status: false, share: @share }
     end
   end
 

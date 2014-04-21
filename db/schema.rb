@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 20140404050215) do
     t.integer  "user_id"
     t.string   "content"
     t.integer  "category_id"
+    t.text     "favourite_user"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
