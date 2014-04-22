@@ -113,7 +113,7 @@ window.Sign = {
             $(data).each(function(index, element){
                 var newArticle = $(template.render("article-template", element));
                 $("#content .wrapper").append(newArticle);
-                if (!Sign.isTouchDevice() ){ Sign.articleEventBind(newArticle) }
+                if (!Sign.isTouchDevice() ){ Sign.articleEventBind(newArticle); }
 
                 newArticle.css('display', 'none');
                 newArticle.fadeIn(800);
@@ -121,7 +121,7 @@ window.Sign = {
             $('.article, .article .comment-link').on('click', Share.commentLink);
             Share.articleFavouriteInit();
             $('.article .article-like').on("click", Share.favouriteLink);
-        })
+        });
     },
     signOutArticleReset: function(){
         $(".article").each(function(index, element){
@@ -145,8 +145,9 @@ $(document).ready(function(){
     $('.sign-status .sign-out-link').on('click', Sign.signOutLink);
     $(".item .new-share-link").on('click', Share.newShareLink);
     if (!Sign.isTouchDevice() ){
-        $(".article[data-liked='false']").each(function(index,element){
-            Sign.articleEventBind(element);
+        $(".article").each(function(index,element){
+            if( !$(element).data('liked') )
+                Sign.articleEventBind(element);
         });
     }
 });
