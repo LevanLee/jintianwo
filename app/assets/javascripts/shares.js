@@ -160,10 +160,10 @@ window.Share = {
     },
     // articleShowFavourite 用户将 favourite start 显示出来
     articleShowFavourite: function(ele){
-        $(ele).css('display', 'black');
+        $(ele).closest('.article').css('display', 'black');
         $(ele).find("i").css('color', 'yellow');
-        $(ele).off('mouseenter');
-        $(ele).off('mouseleave');
+        $(ele).closest('.article').off('mouseenter');
+        $(ele).closest('.article').off('mouseleave');
     },
     // 在初次加载页面时 将 favourite star 显示出来， 切换 tag 时也需要调用
     articleFavouriteInit: function(){
@@ -171,6 +171,8 @@ window.Share = {
             if ( $(element).data("liked") ) {
                 $(this).find(".article-like").css('display', 'black');
                 $(this).find(".article-like i").css('color', 'yellow');
+                $(this).off('mouseenter');
+                $(this).off('mouseleave');
             }
         });
     },

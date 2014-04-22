@@ -7,6 +7,10 @@ class SharesController < ApplicationController
   def index
     @shares = Share.all.order('id desc')
     @categories = Category.all
+    @favourite_users = {}
+    @shares.map do |share|
+      @favourite_users[share.id] = share.favourite_user.include?(current_user) ? true : false
+    end
   end
 
   def comment

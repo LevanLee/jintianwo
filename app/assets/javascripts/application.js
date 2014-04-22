@@ -36,6 +36,7 @@ window.Sign = {
                 $("#background #operation").empty();
                 $(".sign-status").empty().append(template.render("sign-success-template"));
                 $('.sign-status .sign-out-link').on('click', Sign.signOutLink);
+                Sign.signInArticleReset();
             }
             else{
                 console.log(data);
@@ -58,6 +59,7 @@ window.Sign = {
                 $("#background #operation").empty();
                 $(".sign-status").empty().append(template.render("sign-success-template"));
                 $('.sign-status .sign-out-link').on('click', Sign.signOutLink);
+                Sign.signInArticleReset();
             }
             else{
                 console.log(data);
@@ -71,6 +73,7 @@ window.Sign = {
                 $(".sign-status").empty().append(template.render("sign-out-success-template"));
                 $('.sign-status .sign-in-link').on('click', Sign.signInLink);
                 $('.sign-status .sign-up-link').on('click', Sign.signUpLink);
+                Sign.signOutArticleReset();
             }
         }});
     },
@@ -93,6 +96,45 @@ window.Sign = {
         });
         $(element).on("mouseleave",function(event){
             $(this).find('.article-like').css('display', 'none');
+        });
+    },
+    signInArticleReset: function(){
+        var categoryId = null;
+        var tagType    = null;
+        if ( $(".sidebar-tag.green").length > 0 ) {
+            categoryId = $(".sidebar-tag.green").data('id');
+            tagType    = $(".sidebar-tag.green").data('type');
+        } else {
+            categoryId = 0;
+            tagType    = 'all';
+        }
+        $.getJSON('/shares/tag', {tag_type: tagType, category: categoryId}, function(data){
+            $("#content .wrapper").empty();
+            $(data).each(function(index, element){
+                var newArticle = $(template.render("article-template", element));
+                $("#content .wrapper").append(newArticle);
+                if (!Sign.isTouchDevice() ){ Sign.articleEventBind(newArticle) }
+
+                newArticle.css('display', 'none');
+                newArticle.fadeIn(800);
+            });
+            $('.article, .article .comment-link').on('click', Share.commentLink);
+            Share.articleFavouriteInit();
+            $('.article .article-like').on("click", Share.favouriteLink);
+        })
+    },
+    signOutArticleReset: function(){
+        $(".article").each(function(index, element){
+            $(element).find('.article-like i').css('color', 'black');
+            $(element).find('.article-like').css('display', 'none');
+            if ( $(element).data("liked") ) {
+                $(element).on("mouseenter",function(event){
+                    $(this).find('.article-like').css('display', 'block');
+                });
+                $(element).on("mouseleave",function(event){
+                    $(this).find('.article-like').css('display', 'none');
+                });
+            }
         });
     }
 };
