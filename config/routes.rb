@@ -7,6 +7,8 @@ Jintianwo::Application.routes.draw do
     get 'tag', on: :collection
     get 'favourite', on: :collection
     get 'comment', on: :collection
+    get 'like',    on: :collection
+    get 'deserve', on: :collection
   end
 
   namespace :admin do

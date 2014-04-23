@@ -97,6 +97,14 @@ class SharesController < ApplicationController
     end
   end
 
+  def like
+    render :text => "like"
+  end
+
+  def deserve
+    render :text => "deserve"
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_share

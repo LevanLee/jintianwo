@@ -197,6 +197,11 @@ window.Share = {
               $('.sign-status .sign-in-link').click();
             }
         });
+    },
+    likeLink: function(ele){
+        event.stopPropagation();
+        var shareId = $(ele).closest('.article').data('share-id');
+        $.getJSON('/shares/like', {share_id: shareId});
     }
 };
 
