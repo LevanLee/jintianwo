@@ -6,9 +6,9 @@ json.array! @shares do |share|
   json.set! :comments_size, share.comments.size
   json.set! :like_count, share.like.size
   if current_user
-    json.set! :liked, share.favourite_user.include?(current_user.id) ? true : false
+    json.set! :favourited, share.favourite_user.include?(current_user.id) ? true : false
   else
-    json.set! :liked, false
+    json.set! :favourited, false
   end
 
   if !current_user || ( current_user && !share.like.include?(current_user.id) )

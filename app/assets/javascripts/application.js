@@ -127,7 +127,7 @@ window.Sign = {
         $(".article").each(function(index, element){
             $(element).find('.article-like i').css('color', 'black');
             $(element).find('.article-like').css('display', 'none');
-            if ( $(element).data("liked") ) {
+            if ( $(element).data("favourited") ) {
                 $(element).on("mouseenter",function(event){
                     $(this).find('.article-like').css('display', 'block');
                 });
@@ -146,7 +146,7 @@ $(document).ready(function(){
     $(".item .new-share-link").on('click', Share.newShareLink);
     if (!Sign.isTouchDevice() ){
         $(".article").each(function(index,element){
-            if( !$(element).data('liked') )
+            if( !$(element).data('favourited') )
                 Sign.articleEventBind(element);
         });
     }

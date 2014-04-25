@@ -168,7 +168,7 @@ window.Share = {
     // 在初次加载页面时 将 favourite star 显示出来， 切换 tag 时也需要调用
     articleFavouriteInit: function(){
         $(".article").each(function(index,element){
-            if ( $(element).data("liked") ) {
+            if ( $(element).data("favourited") ) {
                 $(this).find(".article-like").css('display', 'black');
                 $(this).find(".article-like i").css('color', 'yellow');
                 $(this).off('mouseenter');
@@ -181,15 +181,15 @@ window.Share = {
         event.stopPropagation();
         var _this = $(this);
         var shareId = _this.data('share-id');
-        var favouriteType = _this.closest(".article").data('liked') ? "unfavourite" : "favourite";
+        var favouriteType = _this.closest(".article").data('favourited') ? "unfavourite" : "favourite";
         $.get('/shares/favourite', {favourite_type: favouriteType, share_id: shareId}, function(data){
             if (data.status) {
-                if (data.liked) {
-                    _this.closest(".article").data('liked', true);
+                if (data.favourited) {
+                    _this.closest(".article").data('favourited', true);
                     Share.articleShowFavourite(_this);
                 } else {
                     _this.find('i').css('color', 'black');
-                    _this.closest(".article").data('liked', false);
+                    _this.closest(".article").data('favourited', false);
                     Sign.articleEventBind(_this.closest('.article'));
                 }
             } else {

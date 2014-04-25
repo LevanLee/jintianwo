@@ -91,7 +91,7 @@ class SharesController < ApplicationController
     end
 
     if current_user && @share.save
-      render :json => { status: true, share: @share, liked: @share.favourite_user.include?(current_user.id) }
+      render :json => { status: true, share: @share, favourited: @share.favourite_user.include?(current_user.id) }
     else
       render :json => { status: false, share: @share }
     end
