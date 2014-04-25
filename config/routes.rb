@@ -8,6 +8,7 @@ Jintianwo::Application.routes.draw do
     get 'favourite', on: :collection
     get 'comment', on: :collection
     get 'like',    on: :collection
+    get 'cancel_like',    on: :collection
     get 'deserve', on: :collection
   end
 

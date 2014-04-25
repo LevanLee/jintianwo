@@ -200,8 +200,41 @@ window.Share = {
     },
     likeLink: function(ele){
         event.stopPropagation();
+        var _this = $(ele);
+        var likeCount = _this.parent().find("span.dyn-vote-j-data").text();
         var shareId = $(ele).closest('.article').data('share-id');
-        $.getJSON('/shares/like', {share_id: shareId});
+        $.getJSON('/shares/like', {share_id: shareId}, function(data){
+            switch(data.status){
+                case 0: //成功
+                    _this.parent().find("span.dyn-vote-j-data").text(Number(likeCount) + 1);
+                    _this.text("取消赞~");
+                    _this.attr("onclick", "return Share.cancelLikeLink(this)");
+                    break;
+                case 1:  //没有登录
+                    $("body").animate({ scrollTop: 0 }, 1000 );
+                    $('.sign-status .sign-in-link').click();
+                    break;
+            }
+        });
+    },
+    cancelLikeLink: function(ele){
+        event.stopPropagation();
+        var _this = $(ele);
+        var likeCount = _this.parent().find("span.dyn-vote-j-data").text();
+        var shareId = $(ele).closest('.article').data('share-id');
+        $.getJSON('/shares/cancel_like', {share_id: shareId}, function(data){
+            switch(data.status){
+                case 0: //成功
+                    _this.parent().find("span.dyn-vote-j-data").text(Number(likeCount) - 1);
+                    _this.text("赞~");
+                    _this.attr("onclick", "return Share.likeLink(this)");
+                    break;
+                case 1:  //没有登录
+                    $("body").animate({ scrollTop: 0 }, 1000 );
+                    $('.sign-status .sign-in-link').click();
+                    break;
+            }
+        });
     }
 };
 

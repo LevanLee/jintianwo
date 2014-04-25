@@ -98,7 +98,25 @@ class SharesController < ApplicationController
   end
 
   def like
-    render :text => "like"
+    share = Share.find_by(id: params[:share_id])
+    unless current_user
+      return render :json => {status: 1}
+    end
+    share.like.push current_user.id if current_user
+    if share.save
+      return render :json => {status: 0}
+    end
+  end
+
+  def cancel_like
+    share = Share.find_by(id: params[:share_id])
+    unless current_user
+      return render :json => {status: 1}
+    end
+    share.like.delete current_user.id if current_user
+    if share.save
+      return render :json => {status: 0}
+    end
   end
 
   def deserve
