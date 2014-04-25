@@ -206,6 +206,7 @@ window.Share = {
         $.getJSON('/shares/like', {share_id: shareId}, function(data){
             switch(data.status){
                 case 0: //成功
+                    _this.data("liked", true);
                     _this.parent().find("span.dyn-vote-j-data").text(Number(likeCount) + 1);
                     _this.text("取消赞~");
                     _this.attr("onclick", "return Share.cancelLikeLink(this)");
@@ -225,6 +226,7 @@ window.Share = {
         $.getJSON('/shares/cancel_like', {share_id: shareId}, function(data){
             switch(data.status){
                 case 0: //成功
+                    _this.data("liked", false);
                     _this.parent().find("span.dyn-vote-j-data").text(Number(likeCount) - 1);
                     _this.text("赞~");
                     _this.attr("onclick", "return Share.likeLink(this)");

@@ -127,6 +127,10 @@ window.Sign = {
         $(".article").each(function(index, element){
             $(element).find('.article-like i').css('color', 'black');
             $(element).find('.article-like').css('display', 'none');
+            if ( !$(element).find("#voteidnumber a").data("liked") ){
+                $(element).find("#voteidnumber a").text("赞~");
+                $(element).find("#voteidnumber a").attr("onclick", "return Share.likeLink(this)");
+            }
             if ( $(element).data("favourited") ) {
                 $(element).on("mouseenter",function(event){
                     $(this).find('.article-like').css('display', 'block');

@@ -12,8 +12,8 @@ json.array! @shares do |share|
   end
 
   if !current_user || ( current_user && !share.like.include?(current_user.id) )
-    json.set! :like_link_content, '<a href="javascript:void(0);" onclick="return Share.likeLink(this)">赞~</a>'
+    json.set! :like_link_content, '<a href="javascript:void(0);" onclick="return Share.likeLink(this)" data-liked="true">赞~</a>'
   else
-    json.set! :like_link_content, '<a href="javascript:void(0);" onclick="return Share.cancelLikeLink(this)">取消赞~</a>'
+    json.set! :like_link_content, '<a href="javascript:void(0);" onclick="return Share.cancelLikeLink(this)" data-liked="false">取消赞~</a>'
   end
 end
