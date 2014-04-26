@@ -127,10 +127,17 @@ window.Sign = {
         $(".article").each(function(index, element){
             $(element).find('.article-like i').css('color', 'black');
             $(element).find('.article-like').css('display', 'none');
+            // 将被点过 赞 的连接初始化
             if ( !$(element).find("#voteidnumber a").data("liked") ){
                 $(element).find("#voteidnumber a").text("赞~");
                 $(element).find("#voteidnumber a").attr("onclick", "return Share.likeLink(this)");
             }
+            // 将被点过 你活该 的连接初始化
+            if ( !$(element).find("#votebfidnumber a").data("deserved") ){
+                $(element).find("#votebfidnumber a").text("你活该~");
+                $(element).find("#votebfidnumber a").attr("onclick", "return Share.deserveLink(this)");
+            }
+            // 将被点过 收藏 的连接初始化
             if ( $(element).data("favourited") ) {
                 $(element).on("mouseenter",function(event){
                     $(this).find('.article-like').css('display', 'block');
