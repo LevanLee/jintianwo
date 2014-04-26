@@ -22,7 +22,7 @@
                       <%= like_link(share) %>
                       (<span class="dyn-vote-j-data"><%= share.like.size %></span>) -
                     <span class="dyn-vote-t" id="votebfidnumber">
-                      <a href="javascript:;" onclick="return Share.deserve(this)" class="bf">你活该~</a>
+                      <%= deserve_link(share) %>
                       (<span class="dyn-vote-t-data"><%= share.deserve.size %></span>)
                     </span>
                   </div>

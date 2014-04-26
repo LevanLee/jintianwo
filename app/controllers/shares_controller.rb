@@ -120,7 +120,25 @@ class SharesController < ApplicationController
   end
 
   def deserve
-    render :text => "deserve"
+    share = Share.find_by(id: params[:share_id])
+    unless current_user
+      return render :json => {status: 1}
+    end
+    share.deserve.push current_user.id if current_user
+    if share.save
+      return render :json => {status: 0}
+    end
+  end
+
+  def cancel_deserve
+    share = Share.find_by(id: params[:share_id])
+    unless current_user
+      return render :json => {status: 1}
+    end
+    share.deserve.delete current_user.id if current_user
+    if share.save
+      return render :json => {status: 0}
+    end
   end
 
   private

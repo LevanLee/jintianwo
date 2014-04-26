@@ -10,6 +10,7 @@ Jintianwo::Application.routes.draw do
     get 'like',    on: :collection
     get 'cancel_like',    on: :collection
     get 'deserve', on: :collection
+    get 'cancel_deserve',    on: :collection
   end
 
   namespace :admin do

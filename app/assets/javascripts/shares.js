@@ -198,6 +198,7 @@ window.Share = {
             }
         });
     },
+    // 赞 和 取消 功能
     likeLink: function(ele){
         event.stopPropagation();
         var _this = $(ele);
@@ -230,6 +231,47 @@ window.Share = {
                     _this.parent().find("span.dyn-vote-j-data").text(Number(likeCount) - 1);
                     _this.text("赞~");
                     _this.attr("onclick", "return Share.likeLink(this)");
+                    break;
+                case 1:  //没有登录
+                    $("body").animate({ scrollTop: 0 }, 1000 );
+                    $('.sign-status .sign-in-link').click();
+                    break;
+            }
+        });
+    },
+    // 你活该 和 取消
+    deserveLink: function(ele){
+        event.stopPropagation();
+        var _this = $(ele);
+        var deserveCount = _this.parent().find("span.dyn-vote-t-data").text();
+        var shareId = $(ele).closest('.article').data('share-id');
+        $.getJSON('/shares/deserve', {share_id: shareId}, function(data){
+            switch(data.status){
+                case 0: //成功
+                    _this.data("deserved", true);
+                    _this.parent().find("span.dyn-vote-t-data").text(Number(deserveCount) + 1);
+                    _this.text("取消~");
+                    _this.attr("onclick", "return Share.cancelDeserveLink(this)");
+                    break;
+                case 1:  //没有登录
+                    $("body").animate({ scrollTop: 0 }, 1000 );
+                    $('.sign-status .sign-in-link').click();
+                    break;
+            }
+        });
+    },
+    cancelDeserveLink: function(ele){
+        event.stopPropagation();
+        var _this = $(ele);
+        var deserveCount = _this.parent().find("span.dyn-vote-t-data").text();
+        var shareId = $(ele).closest('.article').data('share-id');
+        $.getJSON('/shares/cancel_deserve', {share_id: shareId}, function(data){
+            switch(data.status){
+                case 0: //成功
+                    _this.data("deserved", false);
+                    _this.parent().find("span.dyn-vote-t-data").text(Number(deserveCount) - 1);
+                    _this.text("你活该~");
+                    _this.attr("onclick", "return Share.deserveLink(this)");
                     break;
                 case 1:  //没有登录
                     $("body").animate({ scrollTop: 0 }, 1000 );
