@@ -4,8 +4,8 @@ class Share < ActiveRecord::Base
   has_many :comments
 
   serialize :favourite_user, Array
-  serialize :like, Array
-  serialize :deserve, Array
+  serialize :liked, Array
+  serialize :deserved, Array
 
   validates_presence_of :content, :category_id
 end
