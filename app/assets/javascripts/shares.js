@@ -131,8 +131,7 @@ window.Share = {
                     break;
                 }
                 case 1: {
-                    $(document).scrollTop(0);
-                    $('.sign-status .sign-in-link').click();
+                    Share.upTopAndSignIn();
                     break;
                 }
             }
@@ -193,8 +192,7 @@ window.Share = {
                     Sign.articleEventBind(_this.closest('.article'));
                 }
             } else {
-              $(document).scrollTop(0);
-              $('.sign-status .sign-in-link').click();
+                Share.upTopAndSignIn();
             }
         });
     },
@@ -213,8 +211,7 @@ window.Share = {
                     _this.attr("onclick", "return Share.cancelLikeLink(this)");
                     break;
                 case 1:  //没有登录
-                    $("body").animate({ scrollTop: 0 }, 1000 );
-                    $('.sign-status .sign-in-link').click();
+                    Share.upTopAndSignIn();
                     break;
             }
         });
@@ -233,8 +230,7 @@ window.Share = {
                     _this.attr("onclick", "return Share.likeLink(this)");
                     break;
                 case 1:  //没有登录
-                    $("body").animate({ scrollTop: 0 }, 1000 );
-                    $('.sign-status .sign-in-link').click();
+                    Share.upTopAndSignIn();
                     break;
             }
         });
@@ -254,8 +250,7 @@ window.Share = {
                     _this.attr("onclick", "return Share.cancelDeserveLink(this)");
                     break;
                 case 1:  //没有登录
-                    $("body").animate({ scrollTop: 0 }, 1000 );
-                    $('.sign-status .sign-in-link').click();
+                    Share.upTopAndSignIn();
                     break;
             }
         });
@@ -274,11 +269,15 @@ window.Share = {
                     _this.attr("onclick", "return Share.deserveLink(this)");
                     break;
                 case 1:  //没有登录
-                    $("body").animate({ scrollTop: 0 }, 1000 );
-                    $('.sign-status .sign-in-link').click();
+                    Share.upTopAndSignIn();
                     break;
             }
         });
+    },
+    // 移到顶端并显示登陆框
+    upTopAndSignIn: function(){
+        $("body").animate({ scrollTop: 0 }, 1000 );
+        $('.sign-status .sign-in-link').click();
     }
 };
 
