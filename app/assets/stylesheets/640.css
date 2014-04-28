@@ -13,5 +13,8 @@
   .title-box {
     width: 354px;
     margin: 0px 7px;
+    box-shadow: 0 1px 1px #dedede;
+    -moz-box-shadow: 0 1px 1px #dedede;
+    -webkit-box-shadow: 0 1px 1px #dedede;
   }
 }
