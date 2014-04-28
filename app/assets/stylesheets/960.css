@@ -8,6 +8,6 @@
 #content {
   width: 1024px;
 }
-.wrapper {
+.wrapper, .title-box {
   width: 728px;
 }

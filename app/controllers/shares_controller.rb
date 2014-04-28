@@ -141,6 +141,17 @@ class SharesController < ApplicationController
     end
   end
 
+  def article_sort
+    shares = Share.order("id desc").limit(300).sample(30)
+    case params[:sort_type]
+    when "like"
+      @shares = shares.sort{|a,b| b.liked.size <=> a.liked.size }
+    when "deserve"
+      @shares = shares.sort{|a,b| b.deserved.size <=> a.deserved.size }
+    end
+    render :tag
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_share

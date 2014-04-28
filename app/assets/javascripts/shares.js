@@ -278,6 +278,24 @@ window.Share = {
     upTopAndSignIn: function(){
         $("body").animate({ scrollTop: 0 }, 1000 );
         $('.sign-status .sign-in-link').click();
+    },
+    articleSort: function(){
+        var _this = $(this);
+        var sortType = _this.data("sort-type");
+        $.getJSON("/shares/article_sort", {sort_type: sortType}, function(data){
+            $("#content .wrapper").empty();
+            $(data).each(function(index, element){
+                var newArticle = $(template.render("article-template", element));
+                $("#content .wrapper").append(newArticle);
+                if (!Sign.isTouchDevice() ){ Sign.articleEventBind(newArticle) }
+
+                newArticle.css('display', 'none');
+                newArticle.fadeIn(800);
+            });
+            $('.article, .article .comment-link').on('click', Share.commentLink);
+            Share.articleFavouriteInit();
+            $('.article .article-like').on("click", Share.favouriteLink);
+        })
     }
 };
 
@@ -289,5 +307,6 @@ $(document).ready(function(){
     $('.sign-in-link, .sign-up-link, .sign-out-link').on('click', Share.clearNewShareLink);
     $('.article, .article .comment-link').on('click', Share.commentLink);
     $('.article .article-like').on("click", Share.favouriteLink);
+    $(".title-box .sort-link").on("click", Share.articleSort);
     Share.articleFavouriteInit();
 });
