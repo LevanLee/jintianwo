@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140404050215) do
+ActiveRecord::Schema.define(version: 20140429024920) do
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -26,6 +26,19 @@ ActiveRecord::Schema.define(version: 20140404050215) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "notifications", force: true do |t|
+    t.string   "kind"
+    t.integer  "receive_user_id"
+    t.string   "receive_user"
+    t.string   "send_user"
+    t.integer  "content"
+    t.boolean  "status",          default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "notifications", ["receive_user_id"], name: "index_notifications_on_receive_user_id", using: :btree
 
   create_table "shares", force: true do |t|
     t.integer  "user_id"
