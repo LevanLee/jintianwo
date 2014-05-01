@@ -104,6 +104,10 @@ class SharesController < ApplicationController
     end
     share.liked.push current_user.id if current_user
     if share.save
+      receive_user = share.user
+      #if receive_user.username != current_user.username
+        Notification.create( kind: "like", receive_user_id: receive_user.id, receive_user: receive_user.username, send_user: current_user.username )
+      #end
       return render :json => {status: 0}
     end
   end
@@ -150,6 +154,10 @@ class SharesController < ApplicationController
       @shares = shares.sort{|a,b| b.deserved.size <=> a.deserved.size }
     end
     render :tag
+  end
+
+  def notification
+    @notifications = Notification.where(:receive_user_id => current_user.id)
   end
 
   private

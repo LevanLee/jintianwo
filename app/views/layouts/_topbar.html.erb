@@ -1,8 +1,14 @@
 <div class="topbar">
   <div class="ui large menu">
     <%= link_to "今天,我" , root_path, class:"item" %>
-    <div class="ui label">
-      <a href=""><i class="mail icon"></i> 23</a>
+    <div class="ui label notification-box">
+        <a href="javascript:void(0);" class="check-notification-link" data-switch="false" onclick="return Share.checkNotification(this)"><i class="mail icon"></i> <span class="message-count">23</span></a>
+        <div class="notification-list">
+            <div class="list-body"></div>
+            <div class="list-foot" onclick="return Share.notificationListPackUp(this)">
+                <span>收起</span>
+            </div>
+        </div>
     </div>
     <div class="right menu">
       <div class="item">

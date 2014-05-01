@@ -296,6 +296,56 @@ window.Share = {
             Share.articleFavouriteInit();
             $('.article .article-like').on("click", Share.favouriteLink);
         })
+    },
+    // 查询 notifications messages
+    selectNotification: function(){
+        var _title = $(".notification-box");
+        $.getJSON("/shares/notification", function(data){
+            _title.find(".message-count").text(data.size);
+            var _listContent = _title.find(".list-body");
+            $.each(data.notifications, function(index, element){
+                var newNotification = template.render("notification-"+ element.kind +"-template");
+                _listContent.prepend(newNotification);
+            });
+        });
+    },
+    // notifications 查询功能
+    selectNotificationInit: function(){
+        Share.selectNotification();
+        setInterval(Share.selectNotification, 30000);
+    },
+    // 点击显示消息列表
+    checkNotification: function(ele){
+        var _this = $(ele);
+        if ( _this.data("switch") ) {
+            Share.notificationListPackUp();
+        } else {
+            var _parent = $(".notification-list");
+            _parent.css("display", "block");
+            _parent.find(".list-body, .list-foot").css("display", "block");
+            _parent.find(".list-body").animate({"max-height": 230}, 800);
+            _this.data("switch", true);
+        }
+    },
+    // 列表右边用于清除用的按钮
+    clearNotificationListCloseButton: function(ele){
+        var _parent = $(ele).closest(".list-content");
+        _parent.slideUp(500);
+        setTimeout(function(){
+            _parent.remove();
+            if ( $(".notification-list .list-content").length == 0 ) {
+                var _listContent = $(".notification-list .list-body");
+                var newNotification = template.render("notification-empty-template");
+                _listContent.prepend(newNotification);
+            }
+        }, 500)
+    },
+    // 收起按钮要用到的方法
+    notificationListPackUp: function(ele){
+        var _parent = $(".notification-list");
+        _parent.find(".list-body").animate({"max-height": 0}, 800);
+        setTimeout(function(){ _parent.find(".list-body, .list-foot").css("display", "none") },1000);
+        $(".notification-box a.check-notification-link").data("switch", false);
     }
 };
 
@@ -309,4 +359,5 @@ $(document).ready(function(){
     $('.article .article-like').on("click", Share.favouriteLink);
     $(".title-box .sort-link").on("click", Share.articleSort);
     Share.articleFavouriteInit();
+    Share.selectNotificationInit();
 });

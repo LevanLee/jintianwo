@@ -11,3 +11,51 @@
 .wrapper, .title-box {
   width: 728px;
 }
+.notification-box {
+  position:relative;
+}
+.notification-list {
+  display: none;
+  width: 190px;
+  position: absolute;
+  /*min-height: 86px;*/
+  top: 43px;
+  left: 0px;
+  z-index: 10;
+  /*border: 1px solid #e6e6e6;*/
+  /*background-color: #fff;*/
+}
+.notification-list .list-body {
+  padding-top: 16px;
+  /*max-height: 228px;*/
+  overflow: hidden;
+  border: 1px solid #e6e6e6;
+  background-color: #fff;
+}
+.notification-list .list-content {
+  padding: 12px 10px 12px 10px;
+  overflow:hidden;
+}
+.notification-list .list-content .content {
+  float:left;
+  padding-top: 2px;
+}
+.notification-list .list-content .close-button {
+  cursor: pointer;
+  float:right;
+}
+.notification-list .list-foot {
+  height: 20px;
+  position:absolute;
+  width: 188px;
+  bottom: 0px;
+  background-color:#fafafa;
+  text-align:center;
+  cursor: pointer;
+  border: 1px solid #e6e6e6;
+}
+.notification-list .list-body .list-empty-content {
+  padding: 12px 10px;
+  height: 58px;
+  text-align: center;
+}
