@@ -24,8 +24,10 @@
 window.Sign = {
     signInLink: function(event){
         event.preventDefault();
+        // 除了 share 发布框，其他的都删掉
+        Tool.clearWithoutNewShare();
         var newShareTemplate = $(template.render("sign-in-template"));
-        $("#background #operation").empty().append(newShareTemplate);
+        $("#background #operation").append(newShareTemplate);
         // 提交验证
         $("form#new_user").on("ajax:before", function(){
             if(Share.formFieldBorderAuth( "#new_user #user_username", "#new_user #user_username")){ return false; };
@@ -33,7 +35,7 @@ window.Sign = {
         });
         $("form#new_user").bind("ajax:success", function(e, data, status, xhr){
             if(data.success){
-                $("#background #operation").empty();
+                Tool.clearWithoutNewShare();
                 $(".sign-status").empty().append(template.render("sign-success-template"));
                 $('.sign-status .sign-out-link').on('click', Sign.signOutLink);
                 Sign.signInArticleReset();
@@ -49,8 +51,10 @@ window.Sign = {
     },
     signUpLink: function(event){
         event.preventDefault();
+        // 除了 share 发布框，其他的都删掉
+        Tool.clearWithoutNewShare();
         var newShareTemplate = $(template.render("sign-up-template"));
-        $("#background #operation").empty().append(newShareTemplate);
+        $("#background #operation").append(newShareTemplate);
         // 提交验证
         $("form#new_user").on("ajax:before", function(){
             if(Share.formFieldBorderAuth( "#new_user #user_username", "#new_user #user_username")){ return false; };
@@ -60,7 +64,7 @@ window.Sign = {
         });
         $("form#new_user").bind("ajax:success", function(e, data, status, xhr){
             if(data.success){
-                $("#background #operation").empty();
+                Tool.clearWithoutNewShare();
                 $(".sign-status").empty().append(template.render("sign-success-template"));
                 $('.sign-status .sign-out-link').on('click', Sign.signOutLink);
                 Sign.signInArticleReset();

@@ -7,6 +7,7 @@ window.Share = {
         if(Share.formFieldBorderAuth( "#new_share #share_content", "#new_share #share_content")){ return false; };
         $.post("/shares", {share: { content: content, category_id: share_category_id }}, function(data){
             if (data.status) {
+                $("#background #operation").empty();
                 var newArticle = $(template.render("article-template", data));
                 $("#content .wrapper").prepend( newArticle );
                 // 时间绑定
@@ -14,10 +15,8 @@ window.Share = {
 
                 newArticle.css('display', 'none');
                 newArticle.fadeIn(2000);
-                $("#background #operation").empty();
                 $(".new-share-link").click();
             } else {
-                $('.new-share-link').click();
                 $('.sign-in-link').click();
                 $('#operation input').animate({ 'border-color': "red" }, 500,'linear').animate({ 'border-color': "#ccc" }, 500,'linear');
             }
@@ -368,7 +367,7 @@ $(document).ready(function(){
     $(".dashboard .sidebar-tag").on('click', Share.sidebarTagLink);
     $(".dashboard .sidebar-tag").on('click', Share.sidebarTagButton);
     $(".menu .nav-tag").on('click', Share.sidebarTagLink);
-    $('.sign-in-link, .sign-up-link, .sign-out-link').on('click', Share.clearNewShareLink);
+    $('.sign-out-link').on('click', Share.clearNewShareLink);
     $('.article, .article .comment-link').on('click', Share.commentLink);
     $('.article .article-like').on("click", Share.favouriteLink);
     $(".title-box .sort-link").on("click", Share.articleSort);
