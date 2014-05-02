@@ -37,6 +37,10 @@ window.Sign = {
                 $(".sign-status").empty().append(template.render("sign-success-template"));
                 $('.sign-status .sign-out-link').on('click', Sign.signOutLink);
                 Sign.signInArticleReset();
+                // 通知 notification switch
+                Share.notificationSwitch = true;
+                $(".notification-box").css("display", "inline-block");
+                Share.selectNotification();
             }
             else{
                 console.log(data);
@@ -60,6 +64,10 @@ window.Sign = {
                 $(".sign-status").empty().append(template.render("sign-success-template"));
                 $('.sign-status .sign-out-link').on('click', Sign.signOutLink);
                 Sign.signInArticleReset();
+                // 通知 notification switch
+                Share.notificationSwitch = true;
+                $(".notification-box").css("display", "inline-block");
+                Share.selectNotification();
             }
             else{
                 console.log(data);
@@ -74,6 +82,9 @@ window.Sign = {
                 $('.sign-status .sign-in-link').on('click', Sign.signInLink);
                 $('.sign-status .sign-up-link').on('click', Sign.signUpLink);
                 Sign.signOutArticleReset();
+                // 通知 notification switch
+                Share.notificationSwitch = false;
+                $(".notification-box").css("display", "none");
             }
         }});
     },

@@ -1,7 +1,7 @@
 <div class="topbar">
   <div class="ui large menu">
     <%= link_to "今天,我" , root_path, class:"item" %>
-    <div class="ui label notification-box">
+    <div class="ui label notification-box" style="display:<%= user_signed_in? ? "inline-block": "none" %>;">
         <a href="javascript:void(0);" class="check-notification-link" data-switch="false" onclick="return Share.checkNotification(this)"><i class="mail icon"></i> <span class="message-count">23</span></a>
         <div class="notification-list">
             <div class="list-body"></div>

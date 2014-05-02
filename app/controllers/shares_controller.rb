@@ -163,7 +163,12 @@ class SharesController < ApplicationController
   end
 
   def notification
-    @notifications = Notification.where(:receive_user_id => current_user.id, :status => false)
+    if user_signed_in?
+      @notifications = Notification.where(:receive_user_id => current_user.id, :status => false)
+      render "notification", object: @notifications, formats: :json
+    else
+      render :json => { status: false }
+    end
   end
 
   def clear_notification

@@ -297,22 +297,32 @@ window.Share = {
             $('.article .article-like').on("click", Share.favouriteLink);
         })
     },
+    // notification switch
+    notificationSwitch: true,
     // 查询 notifications messages
     selectNotification: function(){
-        var _title = $(".notification-box");
-        $.getJSON("/shares/notification", function(data){
-            _title.find(".message-count").text(data.size);
-            var _listContent = _title.find(".list-body");
-            $.each(data.notifications, function(index, element){
-                var newNotification = template.render("notification-"+ element.kind +"-template", element);
-                _listContent.prepend(newNotification);
+        if ( Share.notificationSwitch ){
+            var _title = $(".notification-box");
+            $.getJSON("/shares/notification", function(data){
+                if( data.status ){
+                    _title.find(".message-count").text(data.size);
+                    var _listContent = _title.find(".list-body");
+                    $(".notification-list .list-body").empty();
+                    $.each(data.notifications, function(index, element){
+                        var newNotification = template.render("notification-"+ element.kind +"-template", element);
+                        _listContent.prepend(newNotification);
+                    });
+                } else {
+                    Share.notificationSwitch = data.status;
+                }
             });
-        });
+        }
     },
     // notifications 查询功能
     selectNotificationInit: function(){
         Share.selectNotification();
-        //setInterval(Share.selectNotification, 30000);
+        // TODO
+        setInterval(Share.selectNotification, 30000);
     },
     // 点击显示消息列表
     checkNotification: function(ele){
@@ -341,7 +351,7 @@ window.Share = {
                     var newNotification = template.render("notification-empty-template");
                     _listContent.prepend(newNotification);
                 }
-            }, 500)
+            }, 500);
         });
     },
     // 收起按钮要用到的方法
