@@ -30,6 +30,11 @@ class CommentsController < ApplicationController
 
     #render :json => {status: 0, user: current_user, content: @comment.content}
     if current_user && @comment.save
+      receive_user = Share.find_by(id: comment_params['share_id']).user
+      ## TODO
+      #if receive_user.username != current_user.username
+        Notification.create( kind: "comment", receive_user_id: receive_user.id, receive_user: receive_user.username, send_user: current_user.username )
+      #end
       comment_size = Share.find(comment_params['share_id']).comments.size
       render :json => {status: 0, user: current_user, content: @comment.content, comment_size: comment_size}
     else

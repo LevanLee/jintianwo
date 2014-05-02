@@ -13,6 +13,7 @@ Jintianwo::Application.routes.draw do
     get 'cancel_deserve',    on: :collection
     get 'article_sort',    on: :collection
     get 'notification',    on: :collection
+    get 'clear_notification',    on: :collection
   end
 
   namespace :admin do

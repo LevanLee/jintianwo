@@ -105,6 +105,7 @@ class SharesController < ApplicationController
     share.liked.push current_user.id if current_user
     if share.save
       receive_user = share.user
+      ## TODO
       #if receive_user.username != current_user.username
         Notification.create( kind: "like", receive_user_id: receive_user.id, receive_user: receive_user.username, send_user: current_user.username )
       #end
@@ -130,6 +131,11 @@ class SharesController < ApplicationController
     end
     share.deserved.push current_user.id if current_user
     if share.save
+      ## TODO
+      receive_user = share.user
+      #if receive_user.username != current_user.username
+        Notification.create( kind: "deserve", receive_user_id: receive_user.id, receive_user: receive_user.username, send_user: current_user.username )
+      #end
       return render :json => {status: 0}
     end
   end
@@ -157,7 +163,14 @@ class SharesController < ApplicationController
   end
 
   def notification
-    @notifications = Notification.where(:receive_user_id => current_user.id)
+    @notifications = Notification.where(:receive_user_id => current_user.id, :status => false)
+  end
+
+  def clear_notification
+    notification = Notification.find_by(id: params[:notification_id])
+    notification.update(status: true)
+    notification_size = Notification.where(:receive_user_id => current_user.id, :status => false).size
+    render :json => {:status => true, :notification_size => notification_size}
   end
 
   private

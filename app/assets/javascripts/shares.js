@@ -304,7 +304,7 @@ window.Share = {
             _title.find(".message-count").text(data.size);
             var _listContent = _title.find(".list-body");
             $.each(data.notifications, function(index, element){
-                var newNotification = template.render("notification-"+ element.kind +"-template");
+                var newNotification = template.render("notification-"+ element.kind +"-template", element);
                 _listContent.prepend(newNotification);
             });
         });
@@ -312,7 +312,7 @@ window.Share = {
     // notifications 查询功能
     selectNotificationInit: function(){
         Share.selectNotification();
-        setInterval(Share.selectNotification, 30000);
+        //setInterval(Share.selectNotification, 30000);
     },
     // 点击显示消息列表
     checkNotification: function(ele){
@@ -330,15 +330,19 @@ window.Share = {
     // 列表右边用于清除用的按钮
     clearNotificationListCloseButton: function(ele){
         var _parent = $(ele).closest(".list-content");
-        _parent.slideUp(500);
-        setTimeout(function(){
-            _parent.remove();
-            if ( $(".notification-list .list-content").length == 0 ) {
-                var _listContent = $(".notification-list .list-body");
-                var newNotification = template.render("notification-empty-template");
-                _listContent.prepend(newNotification);
-            }
-        }, 500)
+        var notificationId = $(ele).closest(".list-content").data("notification-id");
+        $.get("/shares/clear_notification", { notification_id: notificationId }, function(data){
+            _parent.slideUp(500);
+            $(".notification-box .message-count").text(data.notification_size);
+            setTimeout(function(){
+                _parent.remove();
+                if ( $(".notification-list .list-content").length == 0 ) {
+                    var _listContent = $(".notification-list .list-body");
+                    var newNotification = template.render("notification-empty-template");
+                    _listContent.prepend(newNotification);
+                }
+            }, 500)
+        });
     },
     // 收起按钮要用到的方法
     notificationListPackUp: function(ele){
