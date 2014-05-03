@@ -36,6 +36,7 @@ window.Sign = {
         $("form#new_user").bind("ajax:success", function(e, data, status, xhr){
             if(data.success){
                 Tool.clearWithoutNewShare();
+                $(".topbar .sign-status").before("<div class='item user-name'>"+ data.user.username +"</div>");
                 $(".sign-status").empty().append(template.render("sign-success-template"));
                 $('.sign-status .sign-out-link').on('click', Sign.signOutLink);
                 Sign.signInArticleReset();
@@ -65,6 +66,7 @@ window.Sign = {
         $("form#new_user").bind("ajax:success", function(e, data, status, xhr){
             if(data.success){
                 Tool.clearWithoutNewShare();
+                $(".topbar .sign-status").before("<div class='item user-name'>"+ data.user.username +"</div>");
                 $(".sign-status").empty().append(template.render("sign-success-template"));
                 $('.sign-status .sign-out-link').on('click', Sign.signOutLink);
                 Sign.signInArticleReset();
@@ -82,6 +84,7 @@ window.Sign = {
         event.preventDefault();
         $.ajax({url: '/users/sign_out', type: 'DELETE', success: function(data, result, xhr){
             if(xhr.status == 204){
+                $(".topbar .user-name").remove();
                 $(".sign-status").empty().append(template.render("sign-out-success-template"));
                 $('.sign-status .sign-in-link').on('click', Sign.signInLink);
                 $('.sign-status .sign-up-link').on('click', Sign.signUpLink);

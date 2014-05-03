@@ -16,4 +16,12 @@ module SharesHelper
       link_to "取消~", "javascript:void(0);", onclick: "return Share.cancelDeserveLink(this)", "data-deserved" => false
     end
   end
+
+  def show_username_helper
+    if user_signed_in?
+      content_tag(:div, current_user.username, :class => "item user-name")
+    else
+      nil
+    end
+  end
 end
