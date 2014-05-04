@@ -1,5 +1,6 @@
 /*
  *= require shares
+ *= require users
 */
 @import "semantic-ui";
 
@@ -238,12 +239,12 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, 
 #new_user .sign-in-pos-box, #new_user .sign-up-pos-box {
   position: relative;
 }
-#new_user .close-button {
+.user-info .close-button, #new_user .close-button {
   position: absolute;
   top: 7px;
   right: 0px;
 }
-#new_user .close-button:hover {
+.user-info .close-button:hover, #new_user .close-button:hover {
   color:red;
 }
 // .ctlabel {

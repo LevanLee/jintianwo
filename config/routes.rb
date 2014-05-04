@@ -15,6 +15,7 @@ Jintianwo::Application.routes.draw do
     get 'notification',    on: :collection
     get 'clear_notification',    on: :collection
   end
+  get "users/user_info"
 
   namespace :admin do
     resources :shares

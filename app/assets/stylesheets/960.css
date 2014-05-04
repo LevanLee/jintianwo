@@ -59,3 +59,7 @@
   height: 58px;
   text-align: center;
 }
+#operation .user-info {
+  width: 356px;
+  right: 0px;
+}

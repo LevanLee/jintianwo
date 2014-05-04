@@ -359,6 +359,13 @@ window.Share = {
         _parent.find(".list-body").animate({"max-height": 0}, 800);
         setTimeout(function(){ _parent.find(".list-body, .list-foot").css("display", "none") },1000);
         $(".notification-box a.check-notification-link").data("switch", false);
+    },
+    // 显示用户信息
+    showUserInfo: function(){
+        $.getJSON("/users/user_info", function(data){
+           $("#background #operation").empty();
+           $("#background #operation").append(data.content);
+        });
     }
 };
 

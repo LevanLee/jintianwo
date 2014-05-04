@@ -1,0 +1,23 @@
+<div class="user-info">
+    <div class="close-button" onclick="return Share.closeButton()"><i class="large remove sign icon"></i></div>
+    <div class="user-name"><%= current_user.username %></div>
+    <table class="ui basic table">
+      <thead>
+          <tr>
+              <th class="content">内容</th>
+              <th>赞</th>
+              <th>你活该</th>
+          </tr>
+      </thead>
+
+      <tbody>
+          <% Share.limit(5).each do |share| %>
+              <tr>
+                  <td class="content"><%= share.content %></td>
+                  <td class="liked"><%= share.liked.size %></td>
+                  <td class="deserved"><%= share.deserved.size %></td>
+              </tr>
+          <% end %>
+      </tbody>
+    </table>
+</div>
