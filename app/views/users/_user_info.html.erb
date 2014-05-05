@@ -11,7 +11,7 @@
       </thead>
 
       <tbody>
-          <% Share.limit(5).each do |share| %>
+          <% @shares_page.each do |share| %>
               <tr>
                   <td class="content"><%= share.content %></td>
                   <td class="liked"><%= share.liked.size %></td>
@@ -20,4 +20,9 @@
           <% end %>
       </tbody>
     </table>
+    <div class="pageaction">
+        <div class="pageaction-link">
+            <%= paging %>
+        </div>
+    </div>
 </div>

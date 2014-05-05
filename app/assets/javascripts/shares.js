@@ -362,9 +362,16 @@ window.Share = {
     },
     // 显示用户信息
     showUserInfo: function(){
-        $.getJSON("/users/user_info", function(data){
+        $.getJSON("/users/user_info?page=1", function(data){
            $("#background #operation").empty();
-           $("#background #operation").append(data.content);
+           $("#background #operation").append(data.user_info);
+        });
+    },
+    pageLink: function(ele){
+        event.preventDefault();
+        var page = $(ele).data("page");
+        $.getJSON("/users/user_info?page=" + page, function(data){
+           $("#operation .user-info").replaceWith(data.user_info);
         });
     }
 };

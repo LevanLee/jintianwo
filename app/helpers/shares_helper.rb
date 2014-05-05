@@ -24,4 +24,34 @@ module SharesHelper
       nil
     end
   end
+
+  def paging
+    current_page = params[:page].to_i
+    if @page_count <= 5
+      first_num = 1
+      last_num = @page_count
+    else
+      if (current_page - 2) <= 1
+        first_num = 1
+      elsif (current_page + 2) > @page_count
+        first_num = @page_count - 5 + 1
+      else
+        first_num = current_page - 2
+      end
+      last_num = first_num + 5 - 1
+    end
+
+    link = ""
+
+    link << ( link_to "首页", users_user_info_path(:page => 1), "onclick" => "return Share.pageLink(this)", "data-page" => 1 )
+    (first_num..last_num).each do |i|
+      if i == current_page
+        link << ( link_to i, users_user_info_path(:page => i), :class => "current_page", "onclick" => "return Share.pageLink(this)", "data-page" => i )
+      else
+        link << ( link_to i, users_user_info_path(:page => i), "onclick" => "return Share.pageLink(this)", "data-page" => i )
+      end
+    end
+    link << ( link_to "末页", users_user_info_path(:page => @page_count), "onclick" => "return Share.pageLink(this)", "data-page" => @page_count )
+    raw link
+  end
 end
