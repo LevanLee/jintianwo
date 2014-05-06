@@ -43,15 +43,15 @@ module SharesHelper
 
     link = ""
 
-    link << ( link_to "首页", users_user_info_path(:page => 1), "onclick" => "return Share.pageLink(this)", "data-page" => 1 )
+    link << ( link_to "首页", users_user_info_path(:page => 1), :class => "item", "onclick" => "return Share.pageLink(this)", "data-page" => 1, :style => "font-size:13px;" )
     (first_num..last_num).each do |i|
       if i == current_page
-        link << ( link_to i, users_user_info_path(:page => i), :class => "current_page", "onclick" => "return Share.pageLink(this)", "data-page" => i )
+        link << ( link_to i, users_user_info_path(:page => i), :class => "item active", "onclick" => "return Share.pageLink(this)", "data-page" => i, :style => "font-size:13px;" )
       else
-        link << ( link_to i, users_user_info_path(:page => i), "onclick" => "return Share.pageLink(this)", "data-page" => i )
+        link << ( link_to i, users_user_info_path(:page => i), :class => "item", "onclick" => "return Share.pageLink(this)", "data-page" => i, :style => "font-size:13px;" )
       end
     end
-    link << ( link_to "末页", users_user_info_path(:page => @page_count), "onclick" => "return Share.pageLink(this)", "data-page" => @page_count )
+    link << ( link_to "末页", users_user_info_path(:page => @page_count), :class => "item", "onclick" => "return Share.pageLink(this)", "data-page" => @page_count, :style => "font-size:13px;" )
     raw link
   end
 end
