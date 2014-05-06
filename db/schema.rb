@@ -46,7 +46,9 @@ ActiveRecord::Schema.define(version: 20140429024920) do
     t.integer  "category_id"
     t.text     "favourite_user"
     t.text     "liked"
+    t.integer  "like_count"
     t.text     "deserved"
+    t.integer  "deserve_count"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
