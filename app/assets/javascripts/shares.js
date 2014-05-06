@@ -373,6 +373,19 @@ window.Share = {
         $.getJSON("/users/user_info?page=" + page, function(data){
            $("#operation .user-info").replaceWith(data.user_info);
         });
+    },
+    articlePageLink: function(ele){
+        event.preventDefault();
+        var _this = $(ele);
+        var _parent = $(ele).closest(".pageaction");
+        var tag = $("#categories .green");
+        var categories = tag.length == 0 ? 0 : tag.data("id");
+        var pageType = _parent.data("page-type");
+        var page = _this.data("page");
+        $.getJSON("/shares/article_paging", {type: pageType, categories: categories, page: page}, function(data){
+           $("#content .pageaction").replaceWith(data.shares_pageaction_element);
+           $("#content .wrapper").empty().append(data.shares_content);
+        });
     }
 };
 

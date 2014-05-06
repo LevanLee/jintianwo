@@ -54,4 +54,35 @@ module SharesHelper
     link << ( link_to "末页", users_user_info_path(:page => @page_count), :class => "item", "onclick" => "return Share.pageLink(this)", "data-page" => @page_count, :style => "font-size:13px;" )
     raw link
   end
+
+  def paging_helper(share_count, current_page)
+    num = 7
+    page_count = (share_count / 20.to_f).ceil
+    if page_count <= num
+      first_num = 1
+      last_num = page_count
+    else
+      if (current_page - (num/2) ) <= 1
+        first_num = 1
+      elsif (current_page + (num/2) ) > page_count
+        first_num = page_count - num + 1
+      else
+        first_num = current_page - (num/2)
+      end
+      last_num = first_num + num - 1
+    end
+
+    link = ""
+
+    link << ( link_to "首页", "javascript:void(0);", :class => "item", "onclick" => "return Share.articlePageLink(this)", "data-page" => 1, :style => "font-size:13px;" )
+    (first_num..last_num).each do |i|
+      if i == current_page
+        link << ( link_to i, "javascript:void(0);", :class => "item active", "onclick" => "return Share.articlePageLink(this)", "data-page" => i, :style => "font-size:13px;" )
+      else
+        link << ( link_to i, "javascript:void(0);", :class => "item", "onclick" => "return Share.articlePageLink(this)", "data-page" => i, :style => "font-size:13px;" )
+      end
+    end
+    link << ( link_to "末页", "javascript:void(0);", :class => "item", "onclick" => "return Share.articlePageLink(this)", "data-page" => page_count, :style => "font-size:13px;" )
+    raw link
+  end
 end

@@ -5,7 +5,7 @@ class SharesController < ApplicationController
   # GET /shares
   # GET /shares.json
   def index
-    @shares = Share.all.order('id desc')
+    @shares = Share.limit(20).order('id desc')
     @categories = Category.all
     @favourite_users = {}
     @shares.map do |share|
@@ -180,6 +180,28 @@ class SharesController < ApplicationController
     notification.update(status: true)
     notification_size = Notification.where(:receive_user_id => current_user.id, :status => false).size
     render :json => {:status => true, :notification_size => notification_size}
+  end
+
+  def article_paging
+    num = 20
+    offset = (params[:page].to_i - 1) * num
+    @favourite_users = {}
+
+    case params[:type]
+    when "tag"
+      if params[:categories].to_i == 0
+        @shares_count = Share.all.size
+        @shares_page = Share.offset(offset).limit(num).order("created_at desc")
+      else
+        @shares_page = Share.where(:category_id => params[:categories]).offset(offset).limit(num).order("created_at desc")
+      end
+    end
+    @shares_page.map do |share|
+      @favourite_users[share.id] = share.favourite_user.include?(current_user) ? true : false
+    end
+    shares_pageaction_element = render_to_string( :partial => "article_paging" )
+    shares_page_string = render_to_string( :partial => "article", :collection => @shares_page, :as => :share )
+    render :json => { shares_pageaction_element: shares_pageaction_element ,shares_content: shares_page_string }
   end
 
   private

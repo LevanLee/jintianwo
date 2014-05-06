@@ -3,9 +3,14 @@
   <div id="operation"></div>
   <div class="mark"><h1>今天你发生了什么囧事<br> ？</h1></div>
   <div id="content">
-    <div class="title-box ui basic buttons">
-        <div class="ui mini button sort-link deserve-sort-link " data-sort-type="deserve">你活该~</div>
-        <div class="ui mini button sort-link like-sort-link" data-sort-type="like">赞~</div>
+    <div class="title-box ui basic buttons" style="height: 35px;padding: 0px;">
+        <div class="ui mini button sort-link deserve-sort-link " data-sort-type="deserve" style="height:35px;line-height:21px;">你活该~</div>
+        <div class="ui mini button sort-link like-sort-link" data-sort-type="like" style="height:35px;line-height:21px;">赞~</div>
+        <div class="pageaction" data-page-type="tag">
+            <div class="ui borderless pagination menu" style="box-shadow:none;float: left;">
+                <%= paging_helper(Share.all.size, 1) %>
+            </div>
+        </div>
     </div>
     <div class="wrapper">
         <%= render :partial => "article", :collection => @shares, :as => :share %>

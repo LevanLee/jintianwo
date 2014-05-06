@@ -14,6 +14,7 @@ Jintianwo::Application.routes.draw do
     get 'article_sort',    on: :collection
     get 'notification',    on: :collection
     get 'clear_notification',    on: :collection
+    get 'article_paging',    on: :collection
   end
   get "users/user_info"
 
