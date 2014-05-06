@@ -104,6 +104,7 @@ class SharesController < ApplicationController
     end
     share.liked.push current_user.id if current_user
     if share.save
+      Share.increment_counter(:like_count, share.id)
       receive_user = share.user
       ## TODO
       #if receive_user.username != current_user.username
@@ -120,6 +121,7 @@ class SharesController < ApplicationController
     end
     share.liked.delete current_user.id if current_user
     if share.save
+      Share.decrement_counter(:like_count, share.id)
       return render :json => {status: 0}
     end
   end
@@ -131,6 +133,7 @@ class SharesController < ApplicationController
     end
     share.deserved.push current_user.id if current_user
     if share.save
+      Share.increment_counter(:deserve_count, share.id)
       ## TODO
       receive_user = share.user
       #if receive_user.username != current_user.username
@@ -147,6 +150,7 @@ class SharesController < ApplicationController
     end
     share.deserved.delete current_user.id if current_user
     if share.save
+      Share.decrement_counter(:deserve_count, share.id)
       return render :json => {status: 0}
     end
   end
