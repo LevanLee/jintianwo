@@ -191,10 +191,18 @@ class SharesController < ApplicationController
     when "tag"
       if params[:categories].to_i == 0
         @shares_count = Share.all.size
-        @shares_page = Share.offset(offset).limit(num).order("created_at desc")
+        @shares_page = Share.order("created_at desc").offset(offset).limit(num)
       else
         @shares_count = Share.where(:category_id => params[:categories]).size
         @shares_page = Share.where(:category_id => params[:categories]).offset(offset).limit(num).order("created_at desc")
+      end
+    when "sort-link"
+      if params[:sort_type] == "like"
+        @shares_count = Share.all.size
+        @shares_page = Share.order("like_count desc").offset(offset).limit(num)
+      elsif params[:sort_type] == "deserve"
+        @shares_count = Share.all.size
+        @shares_page = Share.order("deserve_count desc").offset(offset).limit(num)
       end
     end
     @shares_page.map do |share|

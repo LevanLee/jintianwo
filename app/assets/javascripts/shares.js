@@ -48,6 +48,8 @@ window.Share = {
     // sidebarTagLink
     sidebarTagLink: function(event){
         event.preventDefault();
+        // 设置 pageaction page-type 为 tag
+        $("#content .pageaction").data("page-type", "tag");
         var _this = $(this);
         $('div[data-id='+ _this.data('id') +']').addClass('green');
         $('div[data-id='+ _this.data('id') +']').siblings().each(function(index, element){
@@ -279,8 +281,12 @@ window.Share = {
         $('.sign-status .sign-in-link').click();
     },
     articleSort: function(){
+        // 设置 pageaction page-type 为 sort-link
+        $("#content .pageaction").data("page-type", "sort-link");
         var _this = $(this);
         var sortType = _this.data("sort-type");
+        // 设置 pageaction sort-type 为 like 或者 deserve
+        $("#content .pageaction").data("sort-type", sortType);
         $.getJSON("/shares/article_sort", {sort_type: sortType}, function(data){
             $("#content .wrapper").empty();
             $(data).each(function(index, element){
@@ -382,7 +388,8 @@ window.Share = {
         var categories = tag.length == 0 ? 0 : tag.data("id");
         var pageType = _parent.data("page-type");
         var page = _this.data("page");
-        $.getJSON("/shares/article_paging", {type: pageType, categories: categories, page: page}, function(data){
+        var sortType = _parent.data("sort-type");
+        $.getJSON("/shares/article_paging", {type: pageType, categories: categories, sort_type: sortType, page: page}, function(data){
            $("#content .pageaction").replaceWith(data.shares_pageaction_element);
            $("#content .wrapper").empty().append(data.shares_content);
            // article 的事件绑定, 包括 favourite 显示，comment 显示和 comment 的提交
