@@ -6,5 +6,9 @@ window.Tool = {
                 $(element).remove();
             }
         });
+    },
+    pageactionReset: function(){
+        $(".pageaction .active").removeClass("active");
+        $(".pageaction a[data-page='1']:last").addClass("active");
     }
 }

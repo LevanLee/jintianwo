@@ -58,8 +58,12 @@ window.Share = {
         var categoryId = _this.data('id');
         var tagType    = _this.data('type');
         $.getJSON('/shares/tag', {tag_type: tagType, category: categoryId}, function(data){
+            var articles_json = JSON.parse(data.articles);
+            $("#content .pageaction").replaceWith(data.shares_pageaction_element);
+            // pageaction active 重置为 1
+            Tool.pageactionReset();
             $("#content .wrapper").empty();
-            $(data).each(function(index, element){
+            $(articles_json).each(function(index, element){
                 var newArticle = $(template.render("article-template", element));
                 $("#content .wrapper").append(newArticle);
                 if (!Sign.isTouchDevice() ){ Sign.articleEventBind(newArticle) }
@@ -287,9 +291,13 @@ window.Share = {
         var sortType = _this.data("sort-type");
         // 设置 pageaction sort-type 为 like 或者 deserve
         $("#content .pageaction").data("sort-type", sortType);
-        $.getJSON("/shares/article_sort", {sort_type: sortType}, function(data){
+        $.getJSON("/shares/article_sort", {sort_type: sortType, page: 1}, function(data){
+            var articles_json = JSON.parse(data.articles);
+            $("#content .pageaction").replaceWith(data.shares_pageaction_element);
             $("#content .wrapper").empty();
-            $(data).each(function(index, element){
+            // pageaction active 重置为 1
+            Tool.pageactionReset();
+            $(articles_json).each(function(index, element){
                 var newArticle = $(template.render("article-template", element));
                 $("#content .wrapper").append(newArticle);
                 if (!Sign.isTouchDevice() ){ Sign.articleEventBind(newArticle) }

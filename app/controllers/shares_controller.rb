@@ -74,10 +74,16 @@ class SharesController < ApplicationController
   def tag
     case params[:tag_type]
     when "all"
-      @shares = Share.all.order("id desc")
+      @shares_count = Share.all.size
+      @shares = Share.order("id desc").limit(20)
     when "alone"
-      @shares = Share.where(category_id: params[:category]).order('created_at desc')
+      @shares_count = Share.where(category_id: params[:category]).size
+      @shares = Share.where(category_id: params[:category]).order('created_at desc').limit(20)
     end
+
+    articles_json = render_to_string( action: :tag)
+    shares_pageaction_element = render_to_string(:partial => "shares/article_paging")
+    render :json => { :articles => articles_json, :shares_pageaction_element => shares_pageaction_element }
   end
 
   def favourite
@@ -163,7 +169,11 @@ class SharesController < ApplicationController
     when "deserve"
       @shares = shares.sort{|a,b| b.deserved.size <=> a.deserved.size }
     end
-    render :tag
+    @shares_count = Share.all.size
+
+    articles_json = render_to_string( action: :tag)
+    shares_pageaction_element = render_to_string(:partial => "shares/article_paging")
+    render :json => { :articles => articles_json, :shares_pageaction_element => shares_pageaction_element }
   end
 
   def notification
