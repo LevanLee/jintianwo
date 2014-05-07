@@ -385,6 +385,16 @@ window.Share = {
         $.getJSON("/shares/article_paging", {type: pageType, categories: categories, page: page}, function(data){
            $("#content .pageaction").replaceWith(data.shares_pageaction_element);
            $("#content .wrapper").empty().append(data.shares_content);
+           // article 的事件绑定, 包括 favourite 显示，comment 显示和 comment 的提交
+           $(".wrapper .article").each(function(index, element){
+                if (!Sign.isTouchDevice() ){ Sign.articleEventBind(element) }
+
+                $(element).css('display', 'none');
+                $(element).fadeIn(2000);
+           });
+           $('.article, .article .comment-link').on('click', Share.commentLink);
+           Share.articleFavouriteInit();
+           $('.article .article-like').on("click", Share.favouriteLink);
         });
     }
 };

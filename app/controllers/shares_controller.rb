@@ -193,6 +193,7 @@ class SharesController < ApplicationController
         @shares_count = Share.all.size
         @shares_page = Share.offset(offset).limit(num).order("created_at desc")
       else
+        @shares_count = Share.where(:category_id => params[:categories]).size
         @shares_page = Share.where(:category_id => params[:categories]).offset(offset).limit(num).order("created_at desc")
       end
     end
