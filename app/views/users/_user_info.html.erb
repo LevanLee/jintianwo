@@ -1,6 +1,10 @@
 <div class="user-info">
     <div class="close-button" onclick="return Share.closeButton()"><i class="large remove sign icon"></i></div>
-    <div class="user-name"><%= current_user.username %></div>
+    <ul style="list-style: none;">
+        <li style="float:left;width: 165px;"><div class="user-name"><%= current_user.username %></div></li>
+        <li style="float:left;padding: 10px;"><span class="like-count"><%= current_user.like_count %></span> 赞~</li>
+        <li style="float:left;padding: 10px;"><span class="deserve-count"><%= current_user.deserve_count %></span> 你活该~</li>
+    </ul>
     <table class="ui basic table">
       <thead>
           <tr>
