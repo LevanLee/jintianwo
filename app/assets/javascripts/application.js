@@ -36,7 +36,7 @@ window.Sign = {
         $("form#new_user").bind("ajax:success", function(e, data, status, xhr){
             if(data.success){
                 Tool.clearWithoutNewShare();
-                $(".topbar .sign-status").before("<div class='item user-name'>"+ data.user.username +"</div>");
+                $(".topbar .sign-status").before("<div class='item user-name' style='cursor: pointer;' onclick='return Share.showUserInfo()' >"+ data.user.username +"</div>");
                 $(".sign-status").empty().append(template.render("sign-success-template"));
                 $('.sign-status .sign-out-link').on('click', Sign.signOutLink);
                 Sign.signInArticleReset();
@@ -66,7 +66,7 @@ window.Sign = {
         $("form#new_user").bind("ajax:success", function(e, data, status, xhr){
             if(data.success){
                 Tool.clearWithoutNewShare();
-                $(".topbar .sign-status").before("<div class='item user-name'>"+ data.user.username +"</div>");
+                $(".topbar .sign-status").before("<div class='item user-name' style='cursor: pointer;' onclick='return Share.showUserInfo()' >"+ data.user.username +"</div>");
                 $(".sign-status").empty().append(template.render("sign-success-template"));
                 $('.sign-status .sign-out-link').on('click', Sign.signOutLink);
                 Sign.signInArticleReset();
@@ -127,8 +127,9 @@ window.Sign = {
             tagType    = 'all';
         }
         $.getJSON('/shares/tag', {tag_type: tagType, category: categoryId}, function(data){
+            var articles_json = JSON.parse(data.articles);
             $("#content .wrapper").empty();
-            $(data).each(function(index, element){
+            $(articles_json).each(function(index, element){
                 var newArticle = $(template.render("article-template", element));
                 $("#content .wrapper").append(newArticle);
                 if (!Sign.isTouchDevice() ){ Sign.articleEventBind(newArticle); }

@@ -19,7 +19,7 @@ module SharesHelper
 
   def show_username_helper
     if user_signed_in?
-      content_tag(:div, current_user.username, :class => "item user-name")
+      content_tag(:div, current_user.username, :class => "item user-name", :style => "cursor: pointer;", "onclick" => "return Share.showUserInfo()")
     else
       nil
     end
