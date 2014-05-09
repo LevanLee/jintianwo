@@ -18,6 +18,8 @@ Jintianwo::Application.routes.draw do
   end
   get "users/user_info"
 
+  get "/jtw/admin" => redirect("/admin/shares")
+
   namespace :admin do
     resources :shares
     resources :sessions do
