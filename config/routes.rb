@@ -21,7 +21,9 @@ Jintianwo::Application.routes.draw do
   get "/jtw/admin" => redirect("/admin/shares")
 
   namespace :admin do
-    resources :shares
+    resources :shares do
+      get 'list_user', on: :collection
+    end
     resources :sessions do
       get 'random', on: :collection
     end

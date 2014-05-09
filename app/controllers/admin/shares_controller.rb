@@ -14,4 +14,8 @@ class Admin::SharesController < ApplicationController
     @share.save
     render layout: false
   end
+
+  def list_user
+    @users = User.paginate(:page => params[:page], :per_page => 30)
+  end
 end
