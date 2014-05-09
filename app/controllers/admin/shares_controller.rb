@@ -4,7 +4,7 @@ class Admin::SharesController < ApplicationController
   layout "admin"
 
   def index
-    @shares = Share.all
+    @shares = Share.paginate(:page => params[:page], :per_page => 30)
     @categories = Category.all.map{|cate| [cate.name, cate.id] }
   end
 
