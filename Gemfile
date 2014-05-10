@@ -1,5 +1,7 @@
-source 'https://rubygems.org'
+source 'https://ruby.taobao.org/'
+#source 'https://rubygems.org'
 
+gem 'rails', '4.1.1'
 gem 'puma'
 
 gem 'semantic-ui-sass', github: 'doabit/semantic-ui-sass'
@@ -9,7 +11,6 @@ gem 'quiet_assets', :git => 'git://github.com/AgilionApps/quiet_assets.git'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.2'
 
 gem 'will_paginate', '~> 3.0'
 
