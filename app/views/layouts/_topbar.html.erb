@@ -37,13 +37,16 @@
             <div class="ui left simple dropdown icon">
                 <i class="settings icon"></i>
                 <div class="menu">
+                    <% if current_user.admin?  %>
+                        <a href="/jtw/admin" target="_blank"><div class="item"><i class="grid layout icon"></i>后台</div></a>
+                    <% end %>
                     <div class="item"><i class="edit icon"></i>编辑</div>
                     <div class="item sign-out-link"><i class="delete icon"></i>删除</div>
                 </div>
             </div>
         <% else %>
-        <%= link_to "登录", new_user_session_path, class:"ui orange button sign-in-link" %>
-        <%= link_to "注册", new_user_registration_path, class:"ui orange button sign-up-link" %>
+            <%= link_to "登录", new_user_session_path, class:"ui orange button sign-in-link" %>
+            <%= link_to "注册", new_user_registration_path, class:"ui orange button sign-up-link" %>
         <% end %>
       </div>
     </div>

@@ -37,7 +37,7 @@ window.Sign = {
             if(data.success){
                 Tool.clearWithoutNewShare();
                 $(".topbar .sign-status").before("<div class='item user-name' style='cursor: pointer;' onclick='return Share.showUserInfo()' >"+ data.user.username +"</div>");
-                $(".sign-status").empty().append(template.render("sign-success-template"));
+                $(".sign-status").empty().append(data.sign_success_template);
                 $('.sign-status .sign-out-link').on('click', Sign.signOutLink);
                 Sign.signInArticleReset();
                 // 通知 notification switch
