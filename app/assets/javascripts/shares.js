@@ -5,6 +5,7 @@ window.Share = {
         // 提交验证
         if(Share.formFieldColorAuth( ".fields-category input[type='radio']:checked", ".field-category label")){ return false; };
         if(Share.formFieldBorderAuth( "#new_share #share_content", "#new_share #share_content")){ return false; };
+        if(Share.numberOfWordCheck()){ return false; };
         $.post("/shares", {share: { content: content, category_id: share_category_id }}, function(data){
             if (data.status) {
                 $("#background #operation").empty();
@@ -40,6 +41,8 @@ window.Share = {
             event.preventDefault();
             var newShareTemplate = $(template.render("new-share-template"));
             $("#background #operation").empty().append(newShareTemplate);
+            // 绑定字数统计方法
+            $("#new_share textarea").on("keyup", Tool.numberOfWordCheckShow);
             _this.off();
             _this.on('click', Share.newShareLink);
             $('.ui.radio.checkbox').checkbox();
@@ -143,11 +146,19 @@ window.Share = {
         });
         event.stopPropagation();
     },
+    numberOfWordCheck: function(){
+        if( $("#new_share #share_content").val().length >= 256 ){
+            var startColor = $("#new_share .number-check").css('color');
+            $("#new_share .number-check").animate({ 'color': "red" }, 500,'linear').delay(500).animate({ 'color': startColor }, 500,'linear');
+            $("#new_share #share_content").animate({ 'border-color': "red" }, 500,'linear').delay(500).animate({ 'border-color': startColor }, 500,'linear');
+            return true;
+        }
+    },
     // 两种验证，color 将 color 高亮
     formFieldColorAuth: function(field, fieldError){
         if( $(field).val() == "" || $.trim( $(field).val() ) == "" ){
             var startColor = $(fieldError).css('color');
-            $(fieldError).animate({ 'color': "red" }, 500,'linear').delay(500).animate({ 'color': startColor }, 500,'linear')
+            $(fieldError).animate({ 'color': "red" }, 500,'linear').delay(500).animate({ 'color': startColor }, 500,'linear');
             return true;
         }
     },

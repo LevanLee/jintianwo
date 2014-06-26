@@ -12,9 +12,10 @@
           <div class="field">
             <%= text_area_tag "share[content]", nil, id: "share_content" %>
           </div>
-          <div class="field">
+          <div class="field" style="float:left">
             <%= link_to "提交", "javascript:void(0);", "onclick" =>  "return Share.submitFrom('new_share')", class: "ui secondary button" %>
           </div>
+          <div class="number-check">0</div>
       </div>
   </div>
 </script>

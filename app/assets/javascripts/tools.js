@@ -10,5 +10,9 @@ window.Tool = {
     pageactionReset: function(){
         $(".pageaction .active").removeClass("active");
         $(".pageaction a[data-page='1']:last").addClass("active");
+    },
+    numberOfWordCheckShow: function(){
+        var length = $("#new_share #share_content").val().length;
+        $("#new_share .number-check").text(length);
     }
 }
