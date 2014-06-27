@@ -9,7 +9,7 @@ class SharesController < ApplicationController
     @categories = Category.all
     @favourite_users = {}
     @shares.map do |share|
-      @favourite_users[share.id] = share.favourite_user.include?(current_user) ? true : false
+      @favourite_users[share.id] = share.favourite_user.include?(current_user.id) ? true : false
     end
   end
 
