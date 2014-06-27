@@ -176,7 +176,7 @@ window.Share = {
     // articleShowFavourite 用户将 favourite start 显示出来
     articleShowFavourite: function(ele){
         $(ele).closest('.article').css('display', 'black');
-        $(ele).find("i").css('color', 'yellow');
+        $(ele).find("i").css('color', '#E96633');
         $(ele).closest('.article').off('mouseenter');
         $(ele).closest('.article').off('mouseleave');
     },
@@ -185,7 +185,7 @@ window.Share = {
         $(".article").each(function(index,element){
             if ( $(element).data("favourited") ) {
                 $(this).find(".article-like").css('display', 'black');
-                $(this).find(".article-like i").css('color', 'yellow');
+                $(this).find(".article-like i").css('color', '#E96633');
                 $(this).off('mouseenter');
                 $(this).off('mouseleave');
             }
