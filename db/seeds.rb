@@ -11,7 +11,6 @@ user0 = User.create!(username: "Levan",
 					name: "Li Fan", 
 					gender: "man", 
 					email: "levanlifan@gmail.com", 
-					sign_in_count: 2, 
 					password: "asdfasdf")
 
 p user0
