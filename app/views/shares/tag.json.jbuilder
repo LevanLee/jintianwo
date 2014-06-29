@@ -4,8 +4,8 @@ json.array! @shares do |share|
   json.set! :created_at, share.created_at.strftime("%Y/%m/%d at %H:%M %P")
   json.set! :username, share.user.username
   json.set! :comments_size, share.comments.size
-  json.set! :like_count, share.liked.size
-  json.set! :deserve_count, share.deserved.size
+  json.set! :like_count, share.like_count
+  json.set! :deserve_count, share.deserve_count
   if current_user
     json.set! :favourited, share.favourite_user.include?(current_user.id) ? true : false
   else

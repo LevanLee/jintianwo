@@ -13,10 +13,10 @@
         <div>
           <span class="dyn-vote-j" id="voteidnumber">
             <%= like_link(share) %>
-            (<span class="dyn-vote-j-data"><%= share.liked.size %></span>) -
+            (<span class="dyn-vote-j-data"><%= share.like_count %></span>) -
           <span class="dyn-vote-t" id="votebfidnumber">
             <%= deserve_link(share) %>
-            (<span class="dyn-vote-t-data"><%= share.deserved.size %></span>)
+            (<span class="dyn-vote-t-data"><%= share.deserve_count %></span>)
           </span>
         </div>
         <div>
