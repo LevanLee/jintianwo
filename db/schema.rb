@@ -46,9 +46,9 @@ ActiveRecord::Schema.define(version: 20140429024920) do
     t.integer  "category_id"
     t.text     "favourite_user"
     t.text     "liked"
-    t.integer  "like_count"
+    t.integer  "like_count",     default: 0
     t.text     "deserved"
-    t.integer  "deserve_count"
+    t.integer  "deserve_count",  default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end

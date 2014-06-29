@@ -6,9 +6,9 @@ class CreateShares < ActiveRecord::Migration
       t.references :category, index: true
       t.text :favourite_user
       t.text :liked
-      t.integer :like_count
+      t.integer :like_count, default: 0
       t.text :deserved
-      t.integer :deserve_count
+      t.integer :deserve_count, default: 0
 
       t.timestamps
     end
