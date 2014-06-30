@@ -51,6 +51,7 @@ window.Share = {
     // sidebarTagLink
     sidebarTagLink: function(event){
         event.preventDefault();
+        event.stopPropagation();
         // 设置 pageaction page-type 为 tag
         $("#content .pageaction").data("page-type", "tag");
         var _this = $(this);
@@ -77,6 +78,7 @@ window.Share = {
             $('.article, .article .comment-link').on('click', Share.commentLink);
             Share.articleFavouriteInit();
             $('.article .article-like').on("click", Share.favouriteLink);
+            $(".wrapper .category-name").on('click', Share.sidebarTagLink);
         })
     },
     // sidebarTagButton
@@ -428,6 +430,7 @@ window.Share = {
 
 $(document).ready(function(){
     $(".dashboard .sidebar-tag").on('click', Share.sidebarTagLink);
+    $(".wrapper .category-name").on('click', Share.sidebarTagLink);
     $(".dashboard .sidebar-tag").on('click', Share.sidebarTagButton);
     $(".menu .nav-tag").on('click', Share.sidebarTagLink);
     $('.sign-out-link').on('click', Share.clearNewShareLink);

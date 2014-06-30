@@ -49,7 +49,7 @@
           </p>
           <p>
             <%= semantic_icon('add') %> <?=created_at ?> -
-            <a href="/love" class="liencat">love</a>
+            <a href="/<?=category_name ?>" class="liencat category-name" data-id="<?=category_id ?>" data-type="alone"><?=category_name?></a>
             - by <?=username ?>
             <a href="/gender/woman" class="light"><%= semantic_icon('male') %></a>-
             <a href="/contry/Canada" class="liencat">Canada</a>

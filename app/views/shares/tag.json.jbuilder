@@ -3,6 +3,8 @@ json.array! @shares do |share|
   json.set! :status, true
   json.set! :created_at, share.created_at.strftime("%Y/%m/%d at %H:%M %P")
   json.set! :username, share.user.username
+  json.set! :category_id, share.category.id
+  json.set! :category_name, share.category.name
   json.set! :comments_size, share.comments.size
   json.set! :like_count, share.like_count
   json.set! :deserve_count, share.deserve_count

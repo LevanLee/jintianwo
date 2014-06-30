@@ -77,10 +77,10 @@ class SharesController < ApplicationController
     case params[:tag_type]
     when "all"
       @shares_count = Share.all.size
-      @shares = Share.order("id desc").limit(20)
+      @shares = Share.includes(:user, :category, :comments).order("id desc").limit(20)
     when "alone"
       @shares_count = Share.where(category_id: params[:category]).size
-      @shares = Share.where(category_id: params[:category]).order('created_at desc').limit(20)
+      @shares = Share.includes(:user, :category, :comments).where(category_id: params[:category]).order('created_at desc').limit(20)
     end
 
     articles_json = render_to_string( action: :tag)

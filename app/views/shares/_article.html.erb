@@ -1,7 +1,7 @@
 <div class="post article" data-share-id="<%= share.id %>" data-favourited="<%= @favourite_users[share.id].to_s %>">
     <p>
       <span class="tooltips new"></span>
-      <a href="/love/21093699" class="fmllink"><%= share.content %></a>
+      <a href="javascript:void(0);" class="fmllink"><%= share.content %></a>
     </p>
     <div class="date">
       <div class="left_part">
@@ -21,7 +21,7 @@
         </div>
         <div>
           <%= semantic_icon('add') %> <%= share.created_at.strftime("%Y/%m/%d at %H:%M %P") %> -
-          <a href="/love" class="liencat">love</a>
+          <a href="/<%= share.category.name %>" class="liencat category-name" data-id="<%= share.category.id %>" data-type="alone"><%= share.category.name %></a>
           - by <%= share.user.username %>
           <a href="/gender/woman" class="light"><%= semantic_icon('male') %></a>-
           <a href="/contry/Canada" class="liencat">Canada</a>
