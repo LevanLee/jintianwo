@@ -4,7 +4,7 @@ class Admin::SharesController < ApplicationController
   layout "admin"
 
   def index
-    @shares = Share.paginate(:page => params[:page], :per_page => 30)
+    @shares = Share.includes(:user, :comments).paginate(:page => params[:page], :per_page => 30)
     @categories = Category.all.map{|cate| [cate.name, cate.id] }
   end
 
@@ -12,7 +12,9 @@ class Admin::SharesController < ApplicationController
     @share = Share.new(params.require(:share).permit!)
     #params.require(:comment_share).permit(:share_id)
     @share.save
-    render layout: false
+    share_template = render_to_string(partial: "article", object: @share, as: :share)
+    form_template  = render_to_string(partial: "form")
+    render :json => {share_template: share_template, form_template: form_template}
   end
 
   def list_user

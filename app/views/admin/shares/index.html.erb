@@ -2,9 +2,7 @@
   <div class="col-md-6 col-md-offset-1">
       <div id="template-tmp"></div>
       <div id="article-lists">
-          <% @shares.each do |share| %>
-              <%= render partial: "article", object: share, as: :share %>
-          <% end %>
+              <%= render partial: "article", collection: @shares, as: :share %>
       </div>
   </div>
   <div class="col-md-4">

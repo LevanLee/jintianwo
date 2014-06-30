@@ -1,7 +1,7 @@
 <div class="post article well" data-share-id="<%= share.id %>">
   <p>
     <span class="tooltips new"></span>
-    <a href="/love/21093699" class="fmllink"><%= share.content %></a>
+    <a href="javascript:void(0);" class="fmllink"><%= share.content %></a>
   </p>
   <div class="date">
     <div class="left_part">
@@ -12,12 +12,12 @@
     <div class="right_part">
       <p>
         <span class="dyn-vote-j" id="voteidnumber">
-          <a href="javascript:;">赞~</a>
-          (<span class="dyn-vote-j-data">100</span>) -
+          <a href="javascript:void(0);">赞~</a>
+          (<span class="dyn-vote-j-data"><%= share.like_count %></span>) -
         </span>
         <span class="dyn-vote-t" id="votebfidnumber">
-          <a href="javascript:;" class="bf">你活该~</a>
-          (<span class="dyn-vote-t-data">1239</span>)
+          <a href="javascript:void(0);" class="bf">你活该~</a>
+          (<span class="dyn-vote-t-data"><%= share.deserve_count %></span>)
         </span>
       </p>
       <p>
@@ -29,9 +29,6 @@
         (<a href="/region/Ontario" class="light">Ontario</a>)
       </p>
     </div>
-  </div>
-  <div class="article-like" id="more-idnumber" style="display:none;">
-    <%= semantic_icon('empty star') %>
   </div>
   <div class="comment-content" style="display:none;"></div>
 </div>

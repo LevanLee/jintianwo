@@ -1,14 +1,28 @@
-<%= form_tag "/admin/shares", class: "admin-shares-form", method: :post do %>
+<%= form_tag "/admin/shares", class: "admin-shares-form", style: "overflow: hidden;", method: :post do %>
     <div class="form-group">
       <label for="category">类别</label>
-      <select id="category" class="form-control">
-        <option></option>
-        <%= options_for_select @categories %>
-      </select>
+      <div id="category" style="overflow:hidden;">
+        <% Category.all.each do |category| %>
+          <div class="span1" style="display:inline;float: left;padding:3px;">
+            <%= radio_button_tag "category", category.id %> <%= category.name %>
+          </div>
+        <% end %>
+      </div>
     </div>
+
     <div class="form-group">
       <label for="content">内容</label>
       <%= text_area_tag :content, nil, class: "form-control", rows: 6 %>
+    </div>
+
+    <div class="form-group pull-left">
+      <label for="like_count">赞</label>
+        <%= number_field_tag 'like_count' %>
+    </div>
+
+    <div class="form-group pull-right">
+      <label for="like_count">你活该</label>
+        <%= number_field_tag 'deserve_count' %>
     </div>
     <%= link_to "提交", 'javascript:void(0);', class: "btn btn-primary pull-right admin-new-shares-submit" %>
 <% end %>
