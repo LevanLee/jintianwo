@@ -5,7 +5,7 @@ class SharesController < ApplicationController
   # GET /shares
   # GET /shares.json
   def index
-    @shares = Share.limit(20).order('id desc')
+    @shares = Share.includes(:comments, :user, :category).limit(20).order('id desc')
     @categories = Category.all
     @favourite_users = {}
     if user_signed_in?
