@@ -8,8 +8,10 @@ class SharesController < ApplicationController
     @shares = Share.limit(20).order('id desc')
     @categories = Category.all
     @favourite_users = {}
-    @shares.map do |share|
-      @favourite_users[share.id] = share.favourite_user.include?(current_user.id) ? true : false
+    if user_signed_in?
+      @shares.map do |share|
+        @favourite_users[share.id] = share.favourite_user.include?(current_user.id) ? true : false
+      end
     end
   end
 
