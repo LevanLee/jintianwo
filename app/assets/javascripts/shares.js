@@ -30,14 +30,14 @@ window.Share = {
         if( _this.data('switch') ){
             _this.data('switch', false);
             var color = _this.data('switch') ? 'green' : 'rgba(0, 0, 0, 0.75)';
-            _this.css('color', color);
+            $("a.new-share-link").css('color', color);
             $("#background #operation").empty();
             _this.off();
             _this.on('click', Share.newShareLink);
         } else {
             _this.data('switch', true);
             var color = _this.data('switch') ? 'green' : 'rgba(0, 0, 0, 0.75)';
-            _this.css('color', color);
+            $("a.new-share-link").css('color', color);
             event.preventDefault();
             var newShareTemplate = $(template.render("new-share-template"));
             $("#background #operation").empty().append(newShareTemplate);

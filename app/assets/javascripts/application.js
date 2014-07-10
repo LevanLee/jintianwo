@@ -174,6 +174,7 @@ $(document).ready(function(){
     $('.sign-status .sign-up-link').on('click', Sign.signUpLink);
     $('.sign-status .sign-out-link').on('click', Sign.signOutLink);
     $(".item .new-share-link").on('click', Share.newShareLink);
+    $(".mark h1").on('click', Share.newShareLink);
     if (!Sign.isTouchDevice() ){
         $(".article").each(function(index,element){
             if( !$(element).data('favourited') )
