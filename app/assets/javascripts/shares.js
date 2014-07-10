@@ -107,10 +107,7 @@ window.Share = {
         } else {
             _this.data('switch', true);
             $.get('/shares/comment',{ comment_share: { share_id: _parent.data('share-id') } },function(data){
-                var newTemp = template.compile(data);
-                //var newTemp = $(data);
-                //console.log(template.compile(data));
-                _parent.find('.comment-content').append(newTemp);
+                _parent.find('.comment-content').append(data);
                 _parent.find('.comment-input').on('click', function(event){ event.stopPropagation() });
                 $('.article .comment-submit-link').on('click', Share.commentSubmitLink);
                 _parent.find('.comment-content').slideDown("slow");
@@ -125,7 +122,7 @@ window.Share = {
         var shareId = _parent.data('share-id');
         var contentInput = _parent.find('.comment-input').val();
         if (contentInput == '') {
-            _parent.find('.comment-input').animate({ 'border-color': "red" }, 500,'linear').animate({ 'border-color': "#ccc" }, 500,'linear');
+            _parent.find('.comment-input').animate({ 'border-color': "red" }, 500,'linear').animate({ 'border-color': "#E8E8E8" }, 500,'linear');
             return false;
         }
 

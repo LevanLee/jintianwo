@@ -26,24 +26,33 @@
 }
 .article .comment-input {
   width: 650px;
-  float: right;
-  height: 60px;
+  float: left;
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 3px;
   appearance: none;
   -webkit-appearance: none;
   -webkit-appearance: none;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+  border: 2px solid #E8E8E8;
 }
 .article .comment-footer {
-  float: right;
-  width: 100%;
-  margin: 5px 0px;
+  float: left;
   position: relative;
 }
 .article .comment-submit-link {
-  margin: 5px 0px;
   float: right;
+  cursor: pointer;
+  border-bottom-right-radius: 5px;
+  border-top-right-radius: 5px;
+  border-top: 2px solid #E8E8E8;
+  border-right: 2px solid #E8E8E8;
+  border-bottom: 2px solid #E8E8E8;
+  height: 35px;
+  width: 48px;
+  text-align: center;
+  line-height: 31px;
 }
 #new_share .number-check {
   float: right;
