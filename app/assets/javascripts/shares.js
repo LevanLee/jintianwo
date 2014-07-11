@@ -156,16 +156,16 @@ window.Share = {
     // 两种验证，color 将 color 高亮
     formFieldColorAuth: function(field, fieldError){
         if( $(field).val() == "" || $.trim( $(field).val() ) == "" ){
-            var startColor = $(fieldError).css('color');
-            $(fieldError).animate({ 'color': "red" }, 500,'linear').delay(500).animate({ 'color': startColor }, 500,'linear');
+            $(fieldError).addClass("error");
+            setTimeout(function(){ $(fieldError).removeClass("error") }, 2500);
             return true;
         }
     },
     // 两种验证，border 将 border 高亮
     formFieldBorderAuth: function(field, fieldError){
         if( $(field).val() == "" || $.trim( $(field).val() ) == "" ){
-            var startColor = $(fieldError).css('border-color');
-            $(fieldError).animate({ 'border-color': "red" }, 500,'linear').delay(500).animate({ 'border-color': startColor }, 500,'linear');
+            $(fieldError).addClass("error");
+            setTimeout(function(){ $(fieldError).removeClass("error") }, 2500);
             return true;
         }
     },

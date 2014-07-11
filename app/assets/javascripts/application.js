@@ -30,8 +30,8 @@ window.Sign = {
         $("#background #operation").append(newShareTemplate);
         // 提交验证
         $("form#new_user").on("ajax:before", function(){
-            if(Share.formFieldBorderAuth( "#new_user #user_username", "#new_user #user_username")){ return false; };
-            if(Share.formFieldBorderAuth( "#new_user #user_password", "#new_user #user_password")){ return false; };
+            if(Share.formFieldBorderAuth( "#new_user #user_username", "#new_user .user-name")){ return false; };
+            if(Share.formFieldBorderAuth( "#new_user #user_password", "#new_user .password")){ return false; };
         });
         $("form#new_user").bind("ajax:success", function(e, data, status, xhr){
             if(data.success){
@@ -46,7 +46,11 @@ window.Sign = {
                 Share.selectNotification();
             }
             else{
-                console.log(data);
+                var username = $("form#new_user").find("#user_username").parent();
+                username.addClass("error");
+                var password = $("form#new_user").find("#user_password").parent();
+                password.addClass("error");
+                setTimeout(function(){ username.removeClass("error"); password.removeClass("error"); }, 2500);
             }
         });
     },
@@ -58,10 +62,10 @@ window.Sign = {
         $("#background #operation").append(newShareTemplate);
         // 提交验证
         $("form#new_user").on("ajax:before", function(){
-            if(Share.formFieldBorderAuth( "#new_user #user_username", "#new_user #user_username")){ return false; };
-            if(Share.formFieldBorderAuth( "#new_user #user_email", "#new_user #user_email")){ return false; };
-            if(Share.formFieldBorderAuth( "#new_user #user_password", "#new_user #user_password")){ return false; };
-            if(Share.formFieldBorderAuth( "#new_user #user_password_confirmation", "#new_user #user_password_confirmation")){ return false; };
+            if(Share.formFieldBorderAuth( "#new_user #user_username", "#new_user .user-name")){ return false; };
+            if(Share.formFieldBorderAuth( "#new_user #user_email", "#new_user .user-email")){ return false; };
+            if(Share.formFieldBorderAuth( "#new_user #user_password", "#new_user .password")){ return false; };
+            if(Share.formFieldBorderAuth( "#new_user #user_password_confirmation", "#new_user .password-confirm")){ return false; };
         });
         $("form#new_user").bind("ajax:success", function(e, data, status, xhr){
             if(data.success){
